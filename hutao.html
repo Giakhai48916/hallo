@@ -1,0 +1,3028 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0c0e14" />
+  <meta name="format-detection" content="telephone=no,date=no,address=no,email=no" />
+  <title>TOP POTENTIAL · Giới Thất Nghiệp</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://render.crafty.gg" crossorigin />
+  <link rel="preconnect" href="https://visage.surgeplay.com" crossorigin />
+  <link rel="dns-prefetch" href="https://crafthead.net" />
+  <link rel="dns-prefetch" href="https://mctiers.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --accent: #6488eb;
+      --accent-dim: rgba(100, 136, 235, 0.15);
+      --accent-glow: rgba(100, 136, 235, 0.35);
+      --bg: #0c0e14;
+      --bg-card: #12151d;
+      --bg-elevated: #181c27;
+      --border: #222733;
+      --border-light: #2a3140;
+      --text: #e8eaf0;
+      --text-muted: #8b92a8;
+      --text-dim: #5c6478;
+      --gold: #FFD700;
+      --silver: #c0c8d8;
+      --bronze: #cd7f32;
+      --success: #4ade80;
+      --danger: #f87171;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-tap-highlight-color: transparent;
+      overscroll-behavior-y: contain;
+    }
+
+    button, a, .regs-card, .nav-btn, .subnav-btn, .modal-close {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+
+    ::selection { background: rgba(100, 136, 235, 0.35); }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { opacity: 0.85; }
+
+    /* ========== HEADER ========== */
+    .header {
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, #10131b 0%, var(--bg) 100%);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--accent), #8ba8f5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #0c0e14;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+
+    .logo-text {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.03em;
+      color: var(--text);
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      color: var(--text-dim);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* ========== NAV TABS ========== */
+    .nav {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 4px;
+    }
+
+    .nav-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 7px;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+    .nav-btn:active:not(.active) { background: rgba(255,255,255,0.08); }
+    .nav-btn.active {
+      background: var(--accent);
+      color: #0c0e14;
+      box-shadow: 0 0 16px var(--accent-glow);
+    }
+
+    /* ========== MAIN ========== */
+    .main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    .panel { display: none; animation: fadeIn 0.65s ease; }
+    .panel.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes rankListFade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .rank-list.animating {
+      animation: rankListFade 0.65s ease;
+    }
+
+
+    /* ========== LEADERBOARDS SUB-NAV ========== */
+    .subnav {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      margin-bottom: 20px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      width: 100%;
+    }
+    .subnav-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease,
+                  box-shadow 0.25s ease, transform 0.2s ease;
+      flex: 1 1 0;
+      text-align: center;
+      min-width: 0;
+      white-space: nowrap;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    }
+    .subnav-btn:hover {
+      color: var(--text);
+      background: var(--bg-elevated);
+      border-color: var(--border-light);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.35), 0 0 0 1px rgba(100,136,235,0.12);
+      transform: translateY(-2px);
+    }
+    .subnav-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+      background: var(--bg-elevated);
+    }
+    .subnav-btn.active {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(100,136,235,0.5);
+      box-shadow: 0 0 18px var(--accent-dim), 0 0 0 1px rgba(100,136,235,0.2);
+    }
+    .subnav-btn.active:hover {
+      background: rgba(100,136,235,0.22);
+      border-color: var(--accent);
+      box-shadow: 0 4px 22px var(--accent-glow), 0 0 0 1px rgba(100,136,235,0.35);
+      transform: translateY(-2px);
+    }
+
+    /* ========== RANKINGS ========== */
+    .section-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title .accent { color: var(--accent); }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 24px;
+    }
+
+    .rank-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .rank-card {
+      display: grid;
+      grid-template-columns: 52px 52px 1fr auto;
+      align-items: center;
+      gap: 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      contain: content;
+    }
+
+    .rank-card:hover {
+      border-color: var(--border-light);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+      transform: translateY(-1px);
+    }
+
+    .rank-card.top7 {
+      border-color: rgba(100, 136, 235, 0.35);
+      background: linear-gradient(135deg, rgba(100,136,235,0.08) 0%, var(--bg-card) 60%);
+    }
+
+    .rank-card.top7:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 28px var(--accent-dim);
+    }
+
+    .rank-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .rank-num.r1 { color: var(--gold); text-shadow: 0 0 12px rgba(255,215,0,0.45); }
+    .rank-num.r2 { color: var(--silver); }
+    .rank-num.r3 { color: var(--bronze); }
+    .rank-num.other { color: var(--text-dim); }
+
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 8px;
+      border: 1px solid var(--border-light);
+      /* 3D bust nửa người (Crafty) — hiện đủ, không crop thành đầu */
+      image-rendering: auto;
+      object-fit: contain;
+      object-position: center bottom;
+      background: #1a1e28;
+      display: block;
+    }
+
+    .player-info { min-width: 0; }
+
+    .player-name-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .player-name {
+      font-weight: 600;
+      font-size: 15px;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .player-name a {
+      color: var(--text);
+      transition: color 0.15s;
+    }
+    .player-name a:hover { color: var(--accent); }
+
+    .ext-tag {
+      display: inline-flex;
+      align-items: center;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.03em;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+    .ext-tag.nmc {
+      background: rgba(100, 136, 235, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(100, 136, 235, 0.35);
+    }
+    .ext-tag.nmc:hover { background: rgba(100, 136, 235, 0.22); opacity: 1; }
+    .ext-tag.ely {
+      background: rgba(0, 250, 154, 0.1);
+      color: #00FA9A;
+      border: 1px solid rgba(0, 250, 154, 0.3);
+    }
+    .ext-tag.ely:hover { background: rgba(0, 250, 154, 0.2); opacity: 1; }
+    .ext-tag.none {
+      background: rgba(248, 113, 113, 0.1);
+      color: var(--danger);
+      border: 1px solid rgba(248, 113, 113, 0.35);
+    }
+    .ext-tag.none:hover { background: rgba(248, 113, 113, 0.2); opacity: 1; }
+    .ext-tag.premium {
+      background: rgba(255, 215, 0, 0.12);
+      color: var(--gold);
+      border: 1px solid rgba(255, 215, 0, 0.4);
+    }
+    .ext-tag.premium:hover { background: rgba(255, 215, 0, 0.22); opacity: 1; }
+
+    .nametag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 3px;
+      letter-spacing: 0.02em;
+    }
+
+    .nametag.elite {
+      background: var(--accent-dim);
+      color: var(--accent);
+      border: 1px solid rgba(100,136,235,0.3);
+    }
+
+    .nametag.elite-gold {
+      background: rgba(255, 215, 0, 0.12);
+      color: #FFD700;
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      text-shadow: 0 0 8px rgba(255, 215, 0, 0.3);
+    }
+
+    .nametag.limit {
+      background: rgba(192,200,216,0.1);
+      color: var(--silver);
+      border: 1px solid rgba(192,200,216,0.2);
+    }
+
+    .nametag.mortal {
+      background: rgba(92,100,120,0.15);
+      color: var(--text-dim);
+      border: 1px solid rgba(92,100,120,0.25);
+    }
+
+    .rank-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-align: right;
+      max-width: 210px;
+      line-height: 1.35;
+    }
+
+    .rank-title.empty { color: transparent; }
+
+    /* Gradient animation for top 1-7 titles */
+    .rank-title.gradient-anim {
+      background: linear-gradient(90deg, #00FA9A, #FFA500, #00FA9A);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientShift 3s ease infinite;
+    }
+
+    /* Ô trống khi rank chưa có player trong leaderboards.json */
+    .rank-card.slot-empty {
+      opacity: 0.45;
+      border-style: dashed;
+      background: transparent;
+    }
+    .rank-card.slot-empty:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--border);
+    }
+    .rank-card.slot-empty .player-name {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+      100% { background-position: 0% center; }
+    }
+
+    /* ========== CHAMPIONSHIP ========== */
+    .champ-status {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .status-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      flex: 1;
+      min-width: 160px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .status-card:hover {
+      border-color: var(--border-light);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+
+    .status-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+
+    .status-value {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .status-value.open { color: var(--success); }
+    .status-value.closed { color: var(--danger); }
+    .status-value.neutral { color: var(--text); }
+
+    .status-value.open::before,
+    .status-value.closed::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .status-value.open::before {
+      background: var(--success);
+      box-shadow: 0 0 10px rgba(74,222,128,0.5);
+    }
+    .status-value.closed::before {
+      background: var(--danger);
+      box-shadow: 0 0 10px rgba(248,113,113,0.4);
+    }
+
+    .status-value a {
+      color: var(--accent);
+      border-bottom: 1px dashed rgba(100,136,235,0.4);
+    }
+    .status-value a:hover { opacity: 1; border-bottom-style: solid; }
+
+    .clock-date {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* ===== BRACKET (pair-tree · connectors luôn căn giữa) ===== */
+    .bracket-wrap {
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 8px 4px 28px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-light) transparent;
+    }
+    .bracket-wrap::-webkit-scrollbar { height: 6px; }
+    .bracket-wrap::-webkit-scrollbar-track { background: transparent; }
+    .bracket-wrap::-webkit-scrollbar-thumb {
+      background: var(--border-light);
+      border-radius: 3px;
+    }
+
+    .bracket-tree {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      min-width: min-content;
+    }
+
+    .bracket-section {
+      background: linear-gradient(180deg, rgba(24,28,39,0.55) 0%, transparent 100%);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px 14px 18px;
+      position: relative;
+    }
+
+    .bracket-section-label {
+      font-family: 'Chakra Petch', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin: 0 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .bracket-section-label::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent-glow);
+      flex-shrink: 0;
+    }
+    .bracket-section.lower .bracket-section-label::before {
+      background: var(--bronze);
+      box-shadow: 0 0 10px rgba(205,127,50,0.4);
+    }
+
+    /* —— Cây bracket lồng nhau: mỗi node = (con trái + con phải) → fork → match —— */
+    .bracket-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* Tiêu đề các vòng — hàng riêng phía trên */
+    .bk-headers {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      padding-left: 0;
+    }
+    .bk-headers span {
+      flex: 0 0 auto;
+      width: 140px;
+      text-align: center;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-dim);
+    }
+    .bk-headers .bk-h-gap { width: 28px; flex: 0 0 auto; }
+
+    /* Node: flex ngang — children | fork | match */
+    .bk-node {
+      display: flex;
+      align-items: center;
+      flex: 1 1 auto;
+    }
+    .bk-node-children {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      flex: 0 0 auto;
+      gap: 12px;
+    }
+    .bk-node-children > .bk-node,
+    .bk-node-children > .bk-leaf {
+      flex: 1 1 auto;
+    }
+
+    /* Lá = chỉ 1 match (round 1) */
+    .bk-leaf {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Fork chữ C — luôn stretch theo chiều cao 2 nhánh con */
+    .bk-fork {
+      width: 28px;
+      flex-shrink: 0;
+      align-self: stretch;
+      position: relative;
+      /* nửa chiều cao 1 match (~72px) → mép C chạm đúng giữa 2 slot */
+      margin: 34px 0;
+    }
+    .bk-fork::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 11px;
+      top: 0;
+      bottom: 0;
+      border-top: 2px solid rgba(100,136,235,0.5);
+      border-bottom: 2px solid rgba(100,136,235,0.5);
+      border-right: 2px solid rgba(100,136,235,0.5);
+      border-radius: 0 8px 8px 0;
+    }
+    .bk-fork::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: calc(100% - 13px);
+      width: 13px;
+      border-top: 2px solid rgba(100,136,235,0.55);
+      transform: translateY(-50%);
+    }
+
+    /* Nối thẳng 1→1 */
+    .bk-line {
+      width: 28px;
+      flex-shrink: 0;
+      height: 2px;
+      background: rgba(100,136,235,0.5);
+      border-radius: 1px;
+    }
+
+    .bracket-section.lower .bk-fork::before,
+    .bracket-section.lower .bk-fork::after {
+      border-color: rgba(205,127,50,0.55);
+    }
+    .bracket-section.lower .bk-line {
+      background: rgba(205,127,50,0.55);
+    }
+
+    /* Stack các nhánh lớn (upper: 2 nhánh SF; lower tương tự) */
+    .bk-stack {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 16px;
+    }
+
+    .match {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      position: relative;
+      width: 140px;
+      flex-shrink: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .match:hover {
+      border-color: var(--border-light);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.28);
+    }
+
+    .match-slot {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 9px;
+      border-bottom: 1px solid var(--border);
+      min-height: 36px;
+      transition: background 0.15s;
+    }
+    .match-slot:last-child { border-bottom: none; }
+    .match-slot:hover { background: rgba(255,255,255,0.03); }
+    .match-slot.winner {
+      background: rgba(100, 136, 235, 0.12);
+      box-shadow: inset 3px 0 0 var(--accent);
+    }
+
+    .match-slot img {
+      width: 22px;
+      height: 22px;
+      border-radius: 5px;
+      image-rendering: pixelated;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+      background: #1a1e28;
+    }
+    .match-slot .slot-name {
+      font-size: 11.5px;
+      font-weight: 600;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: var(--text);
+    }
+    .match-slot .slot-name a { color: inherit; }
+    .match-slot .slot-name a:hover { color: var(--accent); }
+    .match-slot .slot-score {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+      min-width: 16px;
+      text-align: right;
+    }
+    .match-slot.winner .slot-score { color: var(--accent); }
+    .match-slot.tbd .slot-name { color: var(--text-dim); font-weight: 500; }
+    .match-slot.tbd img { opacity: 0.55; filter: grayscale(0.4); }
+
+    .champ-empty-note {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--text-dim);
+      text-align: center;
+      padding: 10px 12px;
+      background: var(--bg-card);
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+    }
+
+    .champion-player {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(145deg, rgba(255,215,0,0.08) 0%, var(--bg-card) 60%);
+      border: 1px solid rgba(255,215,0,0.4);
+      border-radius: 14px;
+      padding: 18px 28px;
+      box-shadow: 0 0 32px rgba(255,215,0,0.12);
+      margin: 8px auto 0;
+      width: fit-content;
+      max-width: 100%;
+    }
+    .champion-player img {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      image-rendering: pixelated;
+      border: 2px solid var(--gold);
+      box-shadow: 0 0 16px rgba(255,215,0,0.25);
+    }
+    .champion-player .name {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--gold);
+      letter-spacing: 0.02em;
+    }
+    .champion-player .champ-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,215,0,0.7);
+    }
+
+    .champ-note {
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .champ-note strong { color: var(--text); }
+
+    /* ========== REGULATIONS ========== */
+    .regs-placeholder {
+      background: var(--bg-card);
+      border: 1px dashed var(--border-light);
+      border-radius: 12px;
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .regs-placeholder h3 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 600;
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .regs-placeholder p {
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
+    .regs-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .regs-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 24px;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.25s, transform 0.2s, background 0.2s;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      text-align: left;
+      font-family: inherit;
+      color: inherit;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .regs-card:hover {
+      border-color: rgba(100, 136, 235, 0.5);
+      background: var(--bg-elevated);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.35), 0 0 24px var(--accent-dim);
+      transform: translateY(-3px);
+    }
+
+    .regs-card:active {
+      transform: translateY(0);
+      background: var(--bg-elevated);
+    }
+
+    .regs-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-dim);
+      border: 1px solid rgba(100,136,235,0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      color: var(--accent);
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+    }
+
+    .regs-card-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .regs-card-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .regs-card-cta {
+      margin-top: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+    }
+
+    /* ========== MODAL ========== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(6, 8, 14, 0.78);
+      backdrop-filter: blur(8px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s ease, visibility 0.25s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 640px;
+      max-height: min(82vh, 720px);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 0 40px var(--accent-dim);
+      transform: translateY(12px) scale(0.98);
+      transition: transform 0.28s ease;
+      overflow: hidden;
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-card) 100%);
+      flex-shrink: 0;
+    }
+
+    .modal-title {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.03em;
+      color: var(--text);
+    }
+
+    .modal-title .accent { color: var(--accent); }
+
+    .modal-close {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .modal-close:hover {
+      background: rgba(248, 113, 113, 0.12);
+      border-color: rgba(248, 113, 113, 0.4);
+      color: var(--danger);
+    }
+
+    .modal-body {
+      padding: 20px 22px 28px;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      -webkit-overflow-scrolling: touch;
+      flex: 1;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .modal-body::-webkit-scrollbar {
+      width: 6px;
+    }
+    .modal-body::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .modal-body::-webkit-scrollbar-thumb {
+      background: var(--border-light);
+      border-radius: 3px;
+    }
+
+    .rule-block {
+      margin-bottom: 22px;
+    }
+    .rule-block:last-child { margin-bottom: 0; }
+
+    .rule-block h3 {
+      font-family: 'Chakra Petch', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--accent);
+      margin-bottom: 8px;
+      letter-spacing: 0.04em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .rule-block h3::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 8px var(--accent-glow);
+      flex-shrink: 0;
+    }
+
+    .rule-block p {
+      color: var(--text-muted);
+      font-size: 13.5px;
+      margin-bottom: 8px;
+    }
+
+    .rule-block ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .rule-block ul li {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .rule-block .note {
+      font-size: 12.5px;
+      color: var(--text-dim);
+      border-left: 2px solid rgba(100,136,235,0.4);
+      padding-left: 10px;
+      margin-top: 6px;
+    }
+
+    .banned-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .banned-list li {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 13px;
+      color: var(--text);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.4;
+    }
+
+    .banned-list li::before {
+      content: "✕";
+      color: var(--danger);
+      font-weight: 700;
+      font-size: 12px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .banned-intro {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding: 12px 14px;
+      background: rgba(248, 113, 113, 0.06);
+      border: 1px solid rgba(248, 113, 113, 0.2);
+      border-radius: 10px;
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+
+    /* ========== RESPONSIVE / MOBILE ========== */
+    @media (max-width: 700px) {
+      .header {
+        backdrop-filter: blur(6px);
+        -webkit-backdrop-filter: blur(6px);
+      }
+
+      body {
+        padding-bottom: env(safe-area-inset-bottom, 0);
+      }
+      .header-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        padding: 12px 14px;
+      }
+      .logo { justify-content: center; }
+      .nav {
+        margin-left: 0;
+        width: 100%;
+        display: flex;
+      }
+      .nav-btn {
+        flex: 1;
+        text-align: center;
+        padding: 10px 8px;
+        font-size: 12px;
+      }
+      .main { padding: 16px 12px 40px; }
+      .section-title { font-size: 17px; }
+      .section-desc { font-size: 12px; margin-bottom: 16px; }
+
+      /* Subnav: scroll ngang mượt trên điện thoại */
+      .subnav {
+        flex-wrap: nowrap;
+        gap: 8px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        padding-bottom: 4px;
+        margin-bottom: 14px;
+      }
+      .subnav::-webkit-scrollbar { display: none; }
+      .subnav-btn {
+        flex: 0 0 auto;
+        min-width: auto;
+        font-size: 12px;
+        padding: 9px 14px;
+      }
+
+      /* Rank card: 1 cột gọn, nghệ danh hiện dưới tên */
+      .rank-card { grid-template-columns: 36px 44px 1fr; gap: 10px; padding: 12px 12px; border-radius: 10px; }
+      .rank-card:hover { transform: none; box-shadow: none; }
+      .rank-card .rank-title {
+        display: none;
+      }
+      .rank-num { font-size: 15px; }
+      .avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 7px;
+      }
+      .player-name { font-size: 14px; }
+      .nametag { font-size: 10px; }
+      .ext-tag { font-size: 9px; padding: 2px 5px; }
+
+      /* Nghệ danh mobile: hiện trong info */
+      .player-info .mobile-title {
+        display: block;
+        margin-top: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+      .player-info .mobile-title.gradient-anim {
+        background: linear-gradient(90deg, #00FA9A, #FFA500, #00FA9A);
+        background-size: 200% auto;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradientShift 3s ease infinite;
+      }
+
+      .status-card { min-width: 0; }
+      .bracket-wrap {
+        margin: 0 -12px;
+        padding: 4px 12px 20px;
+        scroll-snap-type: x proximity;
+      }
+      .bracket-section {
+        padding: 12px 10px 14px;
+        border-radius: 12px;
+      }
+      .bk-headers span { width: 124px; }
+      .bk-headers .bk-h-gap { width: 22px; }
+      .match { width: 124px; border-radius: 8px; }
+      .match-slot { padding: 7px 7px; min-height: 34px; gap: 5px; }
+      .match-slot img { width: 20px; height: 20px; }
+      .match-slot .slot-name { font-size: 11px; }
+      .bk-fork { width: 22px; margin: 32px 0; }
+      .bk-line { width: 22px; }
+      .bk-node-children { gap: 10px; }
+      .champion-player { padding: 14px 20px; }
+      .champion-player img { width: 48px; height: 48px; }
+      .modal { max-height: min(88vh, 720px); border-radius: 14px 14px 0 0; }
+      .modal-overlay { align-items: flex-end; padding: 0; }
+      .regs-cards { grid-template-columns: 1fr; }
+    }
+
+    /* Desktop: ẩn mobile-title */
+    .player-info .mobile-title { display: none; }
+    @media (max-width: 700px) {
+      .player-info .mobile-title { display: block; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">T</div>
+        <div>
+          <div class="logo-text">TOP POTENTIAL</div>
+          <div class="logo-sub">Giới Thất Nghiệp</div>
+        </div>
+      </div>
+      <nav class="nav">
+        <button class="nav-btn active" data-tab="leaderboards">Leaderboards</button>
+        <button class="nav-btn" data-tab="championship">Championship</button>
+        <button class="nav-btn" data-tab="regulations">Regulations</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+    <!-- ========== LEADERBOARDS ========== -->
+    <section id="leaderboards" class="panel active">
+      <h1 class="section-title">
+        <span class="accent">LEADERBOARDS</span>
+      </h1>
+      <p class="section-desc" id="lbDesc">
+        Bảng xếp hạng theo mục · List
+      </p>
+
+      <div class="subnav" id="lbSubnav">
+        <button type="button" class="subnav-btn active" data-cat="rankings">Rankings</button>
+        <button type="button" class="subnav-btn" data-cat="pvp">PvP</button>
+        <button type="button" class="subnav-btn" data-cat="manhunt">Manhunt</button>
+        <button type="button" class="subnav-btn" data-cat="parkour">Parkour</button>
+        <button type="button" class="subnav-btn" data-cat="redstone">Redstone</button>
+        <button type="button" class="subnav-btn" data-cat="build">Build</button>
+      </div>
+
+      <h2 class="section-title" id="lbCatTitle" style="font-size:18px;margin-bottom:12px">
+        <span class="accent">TOP POTENTIAL</span> CỦA GIỚI THẤT NGHIỆP
+      </h2>
+
+      <div class="rank-list" id="rankList"></div>
+    </section>
+
+    <!-- ========== CHAMPIONSHIP ========== -->
+    <section id="championship" class="panel">
+      <h1 class="section-title">Championship</h1>
+      <p class="section-desc" id="champDesc">Vòng đấu bảng · Lịch theo Chủ Nhật hàng tuần</p>
+
+      <div class="subnav" id="champSubnav">
+        <button type="button" class="subnav-btn active" data-champ-cat="pvp">
+          PvP
+        </button>
+        <button type="button" class="subnav-btn" data-champ-cat="manhunt">
+          Manhunt
+        </button>
+        <button type="button" class="subnav-btn" data-champ-cat="parkour">
+          Parkour
+        </button>
+      </div>
+
+      <div class="champ-status">
+        <div class="status-card">
+          <div class="status-label">Trạng thái</div>
+          <div class="status-value" id="champStatus">—</div>
+        </div>
+        <div class="status-card">
+          <div class="status-label">Múi giờ · Việt Nam</div>
+          <div class="status-value neutral">
+            <a href="https://time.is/vi/Ho_Chi_Minh" target="_blank" rel="noopener" id="vnClock" title="time.is · Hồ Chí Minh">—:—:—</a>
+          </div>
+          <div class="clock-date" id="vnDate">—</div>
+        </div>
+      </div>
+
+      <div class="bracket-wrap">
+        <div class="bracket-tree" id="bracket"></div>
+      </div>
+
+      <div class="champ-note">
+        <strong>Lịch hoạt động:</strong> Giải đấu bắt đầu vào tối thứ 7 và Chủ Nhật hàng tuần.
+      </div>
+    </section>
+
+    <!-- ========== REGULATIONS ========== -->
+    <section id="regulations" class="panel">
+      <h1 class="section-title">Regulations</h1>
+      <p class="section-desc">Quy định &amp; điều lệ giải đấu</p>
+
+      <div class="regs-cards">
+        <button type="button" class="regs-card" data-modal="modal-luatchoi" aria-haspopup="dialog">
+          <div class="regs-card-icon">L</div>
+          <div class="regs-card-title">Luật chơi</div>
+          <div class="regs-card-desc">Thể thức thi đấu chi tiết cho từng môn: PvP, Manhunt, Parkour, Redstone, Builder.</div>
+          <div class="regs-card-cta">Xem chi tiết →</div>
+        </button>
+        <button type="button" class="regs-card" data-modal="modal-quydinh" aria-haspopup="dialog">
+          <div class="regs-card-icon">Q</div>
+          <div class="regs-card-title">Quy định</div>
+          <div class="regs-card-desc">Danh sách mods bị cấm trong PvP &amp; Manhunt. Vi phạm sẽ bị xử lý.</div>
+          <div class="regs-card-cta">Xem chi tiết →</div>
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== MODAL: Luật chơi ========== -->
+  <div class="modal-overlay" id="modal-luatchoi" role="dialog" aria-modal="true" aria-labelledby="title-luatchoi">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="title-luatchoi"><span class="accent">LUẬT CHƠI</span></div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Đóng">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="rule-block">
+          <h3>PvP</h3>
+          <p>Thể thức thi đấu: Ban tổ chức sẽ chọn random <strong>5</strong> trong các gamemode sau:</p>
+          <ul>
+            <li>Sword</li>
+            <li>Axe</li>
+            <li>Diamond Pot</li>
+            <li>Netherite Pot</li>
+            <li>UHC</li>
+            <li>Diamond SMP Kit</li>
+            <li>SMP Kit</li>
+            <li>TNT Cart</li>
+            <li>Spear Mace</li>
+            <li>Mace (Mace Rocket, Mace Wind Charge)</li>
+            <li>Crystal</li>
+          </ul>
+          <p>Sau đó mỗi trận duel sẽ random chọn ra <strong>3</strong> trong 5 gamemode đã chọn, mỗi gamemode <strong>FT5</strong>.</p>
+          <p class="note">Đối với các gamemode Crystal, Spear Mace, Mace (Mace Rocket, Mace Wind Charge), SMP Kit, Diamond SMP Kit, UHC thì sẽ <strong>FT3</strong>.</p>
+        </div>
+
+        <div class="rule-block">
+          <h3>Manhunt</h3>
+          <p>Thể thức thi đấu chia ra <strong>6 đội</strong>, bắt cặp đội đấu với nhau Team vs Team. Ngẫu nhiên chọn ra 1 đội là <strong>Hunter</strong>, đội còn lại là <strong>Speedrunner</strong>.</p>
+          <p><strong>Cách tính điểm:</strong></p>
+          <p>• <strong>Hunter:</strong> Trung bình K/D/A để ra điểm cá nhân mỗi round.</p>
+          <p>• <strong>Speedrunner:</strong> Tính điểm K/A. Nếu hoàn thành game được <strong>+2 điểm</strong> cho mỗi người và <strong>+3 điểm</strong> cho người kill được rồng. Nếu hoàn thành trước 30 phút sẽ được cộng thêm <strong>25%</strong> tổng số điểm sau khi hoàn thành game.</p>
+        </div>
+
+        <div class="rule-block">
+          <h3>Parkour</h3>
+          <p>Thể thức thi đấu chia ra 2 kiểu:</p>
+          <p>1. Cả 2 bên sẽ random map cho nhau — ai về đích trước thì win.</p>
+          <p>2. Cả 2 bên sẽ random 1 map để thi đấu chung.</p>
+        </div>
+
+        <div class="rule-block">
+          <h3>Redstone</h3>
+          <p>Sẽ chia ra 3 phần để kiểm tra: <strong>Lý thuyết</strong>, <strong>Bài thi</strong>, <strong>Thực hành</strong>.</p>
+          <p>• <strong>Lý thuyết:</strong> 10 câu hỏi — ai trả lời nhanh nhất và đúng nhất các câu thì được 1 điểm.</p>
+          <p>• <strong>Bài thi:</strong> Cho 1 đề bài về redstone phải giải được. Ai giải nhanh nhất trong thời gian quy định và đúng nhất sẽ có điểm (điểm số tùy bài).</p>
+          <p>• <strong>Thực hành:</strong> Cho 1 chủ đề và phải build redstone từ đề bài đó. Tính điểm dựa vào thời gian, nguyên liệu, công dụng.</p>
+        </div>
+
+        <div class="rule-block">
+          <h3>Builder</h3>
+          <p>Xây dựng theo 1 chủ đề ngẫu nhiên hoặc tự do. Tính điểm theo <strong>độ đẹp</strong> và <strong>ý nghĩa</strong> công trình.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== MODAL: Quy định ========== -->
+  <div class="modal-overlay" id="modal-quydinh" role="dialog" aria-modal="true" aria-labelledby="title-quydinh">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title" id="title-quydinh"><span class="accent">QUY ĐỊNH</span></div>
+        <button type="button" class="modal-close" data-close-modal aria-label="Đóng">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="banned-intro">
+          <strong>Các mods bị cấm</strong> trong PvP và Manhunt. Sử dụng các mod sau (hoặc mod có tính năng tương tự) sẽ bị xử lý theo quy định giải.
+        </div>
+        <ul class="banned-list">
+          <li>Accurate Block Placement Reborn</li>
+          <li>Aim Assist</li>
+          <li>Anchor Optimizer</li>
+          <li>Auto-clickers</li>
+          <li>Auto totem</li>
+          <li>Auto-miners</li>
+          <li>Bedrockify</li>
+          <li>Click Crystals</li>
+          <li>Clumsy (ping spoofing)</li>
+          <li>Consumable Optimizer</li>
+          <li>CookeyMod (Prior to 1.7.14)</li>
+          <li>Cut Through</li>
+          <li>Debugify</li>
+          <li>Dokko's hotbar optimizer</li>
+          <li>ESP</li>
+          <li>Elytra swapper</li>
+          <li>FPS Plus Legacy Fabric</li>
+          <li>Faster Ladder Climbing</li>
+          <li>Fast XP</li>
+          <li>Flight</li>
+          <li>Free Move</li>
+          <li>Freecam</li>
+          <li>Gapple counter (texture pack)</li>
+          <li>Hero's Anchor Optimizer</li>
+          <li>Inventory Move Mods</li>
+          <li>Inventory Profiles Next</li>
+          <li>Item Indicators</li>
+          <li>Item Scroller</li>
+          <li>Jump Over Fences</li>
+          <li>Ladder Warp</li>
+          <li>Loot Beams</li>
+          <li>MidnightControls</li>
+          <li>Mouse Tweaks</li>
+          <li>No delay optimizer</li>
+          <li>No Input Lag Tick Rate</li>
+          <li>No jump Delay</li>
+          <li>Null bind</li>
+          <li>Ping Equalizer / Anything that modifies Ping</li>
+          <li>Pro Placer</li>
+          <li>Punchy!</li>
+          <li>Radar</li>
+          <li>Reforged Accurate Block Placement Reborn</li>
+          <li>Shield delay optimizer</li>
+          <li>Shoulder Surfing Reloaded</li>
+          <li>Smart Block Placement</li>
+          <li>Speed / Timer mods</li>
+          <li>Spider / StepSync</li>
+          <li>ACTweakaroo</li>
+          <li>ViaFabricPlus</li>
+          <li>Vivecraft</li>
+          <li>Wall-Jump TXF</li>
+          <li>Hoặc các mods có tính năng tương tự</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    TOP POTENTIAL · Giới Thất Nghiệp · Demo UI
+  </footer>
+
+  <script>
+    /* ========== DATA ==========
+       Bot Discord / api_update.php → players.json
+       Ưu tiên data bot (platform, uuid, skin, elyId).
+       Chỉ resolve API khi thiếu field.
+       ========================================================= */
+    const DATA_URL = "leaderboards.json"; // { rankings:[], pvp:[], ... }
+    const CATEGORIES = ["rankings", "pvp", "manhunt", "parkour", "redstone", "build"];
+    const CAT_LABELS = {
+      rankings: "Rankings",
+      pvp: "PvP",
+      manhunt: "Manhunt",
+      parkour: "Parkour",
+      redstone: "Redstone",
+      build: "Build"
+    };
+    const CAT_TITLES = {
+      rankings: '<span class="accent">TOP POTENTIAL</span> CỦA GIỚI THẤT NGHIỆP',
+      pvp: '<span class="accent">PvP</span> LEADERBOARDS',
+      manhunt: '<span class="accent">MANHUNT</span> LEADERBOARDS',
+      parkour: '<span class="accent">PARKOUR</span> LEADERBOARDS',
+      redstone: '<span class="accent">REDSTONE</span> LEADERBOARDS',
+      build: '<span class="accent">BUILD</span> LEADERBOARDS'
+    };
+ 
+    let LEADERBOARDS = {
+      rankings: [],
+      pvp: [],
+      manhunt: [],
+      parkour: [],
+      redstone: [],
+      build: []
+    };
+    let currentCat = "rankings";
+    let PLAYERS = []; // = LEADERBOARDS[currentCat] khi render
+
+    /* Championship — bot ghi bracket.json / api_update.php
+       Hỗ trợ 3 nhánh: pvp, manhunt, parkour
+       Format mới: { pvp: {...}, manhunt: {...}, parkour: {...} }
+       Format cũ (1 bracket): vẫn load vào nhánh pvp
+    */
+    const CHAMP_CATS = ["pvp", "manhunt", "parkour"];
+    const CHAMP_CAT_LABELS = {
+      pvp: "PvP",
+      manhunt: "Manhunt",
+      parkour: "Parkour"
+    };
+
+    function emptyChampData() {
+      return {
+        status: "closed",
+        upperR1: [],
+        upperR2: [],
+        upperSF: [],
+        upperFinal: [],
+        grandFinal: [],
+        lowerR1: [],
+        lowerR2: [],
+        lowerR3: [],
+        lowerR4: [],
+        lowerR5: [],
+        lowerFinal: [],
+        champion: null
+      };
+    }
+
+    let CHAMPS = {
+      pvp: emptyChampData(),
+      manhunt: emptyChampData(),
+      parkour: emptyChampData()
+    };
+    let currentChampCat = "pvp";
+    let CHAMP = CHAMPS[currentChampCat];
+
+    function getNametag(rank) {
+      // 1–3: vàng | 4–7: xanh | 8–14: bạc | 15+: phàm phu
+      // Không giới hạn số hạng — add bao nhiêu rank trong leaderboards.json cũng được
+      if (rank <= 3) return { text: "Thất Đại Liệt Cường Của Giới Thất Nghiệp", cls: "elite-gold" };
+      if (rank <= 7) return { text: "Thất Đại Liệt Cường Của Giới Thất Nghiệp", cls: "elite" };
+      if (rank <= 14) return { text: "Giới Hạn Của Phàm Nhân", cls: "limit" };
+      return { text: "Cảnh Giới Của Phàm Phu", cls: "mortal" };
+    }
+
+    /* =========================================================
+       Skin & profile resolution
+       TẤT CẢ avatar = render 3D BUST (nửa người) như Crafty.gg
+       Skin = đang mặc trên Mojang (theo UUID), không skin lịch sử.
+       Primary: Crafty 3D bust → Visage 3D bust → Mineskin → 2D
+       ========================================================= */
+
+    // Giá trị cache-bust duy nhất cho MỖI lần load trang (thay vì theo ngày) →
+    // ảnh đại diện/skin luôn được dò & tải lại mới, không dùng ảnh cache cũ của trình duyệt/CDN.
+    var _pageLoadBust = Date.now();
+    function skinBust() {
+      return String(_pageLoadBust);
+    }
+
+    function cleanId(id) {
+      return String(id || "").replace(/-/g, "").toLowerCase();
+    }
+
+    function isUuid32(id) {
+      return /^[0-9a-f]{32}$/.test(cleanId(id));
+    }
+
+    function isSmallScreen() {
+      return window.innerWidth <= 700;
+    }
+
+    /**
+     * Render 3D bust của Crafty.gg (bản gốc) — giữ lại để dùng làm FALLBACK,
+     * vì Crafty hay cache ảnh render khá lâu → skin đổi rồi vẫn hiện ảnh cũ.
+     * https://crafty.gg/skin-service
+     */
+    function avatarCraftyRaw(nameOrUuid, style) {
+      var id = cleanId(nameOrUuid) || "MHF_Steve";
+      if (!isUuid32(id) && nameOrUuid) id = String(nameOrUuid);
+      style = style || "bust";
+      var px = isSmallScreen() ? 64 : 128;
+      return "https://render.crafty.gg/3d/" + style + "/" + encodeURIComponent(id) +
+        "?width=" + px + "&height=" + px + "&v=" + skinBust();
+    }
+
+    /**
+     * avatarCrafty() = nguồn avatar CHÍNH cho toàn trang.
+     * Đổi sang Visage làm nguồn chính (cập nhật skin gần như tức thời, ít bị cache server-side)
+     * thay vì Crafty.gg (hay giữ ảnh render cũ khá lâu dù skin đã đổi). Giữ tên hàm cũ để không
+     * phải sửa lại toàn bộ nơi gọi avatarCrafty(...) trong file.
+     */
+    function avatarCrafty(nameOrUuid, style) {
+      if (style && style !== "bust") return avatarCraftyRaw(nameOrUuid, style);
+      var id = cleanId(nameOrUuid) || "MHF_Steve";
+      if (!isUuid32(id) && nameOrUuid) id = String(nameOrUuid);
+      return avatarVisageBust(id);
+    }
+
+    function avatarCrafty2d(nameOrUuid) {
+      var id = cleanId(nameOrUuid) || "MHF_Steve";
+      if (!isUuid32(id) && nameOrUuid) id = String(nameOrUuid);
+      return "https://render.crafty.gg/2d/head/" + encodeURIComponent(id) + "?size=64&v=" + skinBust();
+    }
+
+    /** Visage 3D bust — nguồn chính (đổi skin gần như tức thời) */
+    function avatarVisageBust(uuidOrName) {
+      var id = cleanId(uuidOrName);
+      if (isUuid32(id)) {
+        var dashed = id.replace(/(.{8})(.{4})(.{4})(.{4})(.{12})/, "$1-$2-$3-$4-$5");
+        return "https://visage.surgeplay.com/bust/128/" + dashed + "?v=" + skinBust();
+      }
+      return "https://visage.surgeplay.com/bust/128/" + encodeURIComponent(uuidOrName) + "?v=" + skinBust();
+    }
+
+    /** Mineskin 3D armor bust */
+    function avatarMineskinBust(uuidOrName) {
+      var id = cleanId(uuidOrName) || encodeURIComponent(uuidOrName);
+      return "https://mineskin.eu/armor/bust/" + id + "/100?v=" + skinBust();
+    }
+
+    /** Avatar 3D BUST ưu tiên — luôn nửa người, skin hiện tại theo UUID */
+    function avatarLiveUuid(uuidNodash, size) {
+      var id = cleanId(uuidNodash);
+      if (!isUuid32(id)) return avatarDefault();
+      // Crafty 3D bust (giống hình 2)
+      return avatarCrafty(id, "bust");
+    }
+
+    function avatarNameMC(nameOrUuid) {
+      // Giữ tên hàm cũ nhưng trả về 3D bust (không còn mặt 2D)
+      var id = cleanId(nameOrUuid);
+      if (isUuid32(id)) return avatarCrafty(id, "bust");
+      return avatarCrafty(nameOrUuid, "bust");
+    }
+
+    function avatarCrafatar(nameOrUuid) {
+      var id = cleanId(nameOrUuid) || String(nameOrUuid || "");
+      return "https://crafatar.com/avatars/" + encodeURIComponent(id) +
+        "?size=64&overlay=true&default=MHF_Steve&v=" + skinBust();
+    }
+
+    function avatarMinotar(name) {
+      return "https://minotar.net/helm/" + encodeURIComponent(name) + "/64.png?v=" + skinBust();
+    }
+
+    function avatarEly(name) {
+      // Ely không có 3D public ổn định → crafty theo tên + ely face fallback trong imgTag
+      return avatarCrafty(name, "bust");
+    }
+
+    function avatarElyFace(name) {
+      return "https://ely.by/services/minecraft/v1/skins/" + encodeURIComponent(name) + "/face.png?v=" + skinBust();
+    }
+
+    function skinElyFull(name) {
+      return "https://skinsystem.ely.by/skins/" + encodeURIComponent(name) + ".png";
+    }
+
+    function avatarDefault() {
+      return avatarCrafty("MHF_Steve", "bust");
+    }
+
+    function avatarFromPlayer(p) {
+      if (!p) return avatarDefault();
+      var uuid = p.uuidNodash || (p.uuid ? cleanId(p.uuid) : null);
+      if (uuid && isUuid32(uuid)) return avatarCrafty(uuid, "bust");
+      if (p.face) return p.face;
+      if (p.name) return avatarCrafty(p.name, "bust");
+      return avatarDefault();
+    }
+
+    /** Gán face = 3D bust skin đang mặc */
+    function setPlayerLiveFace(p) {
+      if (!p) return;
+      var uuid = p.uuidNodash || (p.uuid ? cleanId(p.uuid) : null);
+      if (uuid && isUuid32(uuid)) {
+        p.uuidNodash = cleanId(uuid);
+        p.face = avatarCrafty(p.uuidNodash, "bust");
+        return;
+      }
+      if (p.name) {
+        p.face = avatarCrafty(p.name, "bust");
+      }
+    }
+
+    function avatarOnError(img) {
+      var next = img.dataset.fallback || img.dataset.fallback2 || img.dataset.fallback3 || "";
+      if (img.dataset.fallback) {
+        img.dataset.fallback = "";
+      } else if (img.dataset.fallback2) {
+        img.dataset.fallback2 = "";
+      } else if (img.dataset.fallback3) {
+        img.dataset.fallback3 = "";
+      }
+      if (next) {
+        img.src = next;
+        return;
+      }
+      img.onerror = null;
+      img.src = img.dataset.default || avatarDefault();
+    }
+
+    function avatarUrl(name, platform) {
+      return avatarCrafty(name, "bust");
+    }
+
+    function normalizeElyId(value) {
+      if (value == null || value === "") return null;
+      var s = String(value).trim();
+      var m = s.match(/ely\.by\/u(\d+)/i) || s.match(/\/u(\d+)\s*$/i) || s.match(/^u(\d+)$/i);
+      if (m) return m[1];
+      if (/^\d+$/.test(s)) return s;
+      return null;
+    }
+
+    function findElyId(name) {
+      for (var i = 0; i < PLAYERS.length; i++) {
+        if (PLAYERS[i].name === name) {
+          return normalizeElyId(PLAYERS[i].elyId) ||
+                 normalizeElyId(PLAYERS[i].profileLink) ||
+                 null;
+        }
+      }
+      return null;
+    }
+
+    function findUuid(name) {
+      for (var i = 0; i < PLAYERS.length; i++) {
+        if (PLAYERS[i].name === name && PLAYERS[i].uuid) return PLAYERS[i].uuid;
+      }
+      return null;
+    }
+
+    function profileUrl(name, platform) {
+      if (platform === "none") return "#";
+      if (platform === "ely") {
+        var id = findElyId(name);
+        if (id) return "https://ely.by/u" + id;
+        return "https://ely.by/skins?name=" + encodeURIComponent(name);
+      }
+      var uuid = findUuid(name);
+      if (uuid) return "https://namemc.com/profile/" + encodeURIComponent(uuid);
+      return "https://namemc.com/profile/" + encodeURIComponent(name);
+    }
+
+    function platformTag(name, platform) {
+      var pInfo = findPlayer(name);
+      if (pInfo && pInfo.premium) {
+        var purl = profileUrl(name, "namemc");
+        return '<a class="ext-tag premium" href="' + purl + '" target="_blank" rel="noopener" title="Tài khoản Premium (Mojang) — tên &amp; ảnh đại diện lấy trực tiếp từ skin">★ PREMIUM</a>';
+      }
+      if (platform === "ely") {
+        var url = profileUrl(name, "ely");
+        var title = findElyId(name)
+          ? "Hồ sơ ely.by"
+          : "Skin ely.by (chưa có elyId — thêm elyId để ra /u{ID})";
+        return '<a class="ext-tag ely" href="' + url + '" target="_blank" rel="noopener" title="' + title + '">ELY</a>';
+      }
+      if (platform === "none") {
+        return '<span class="ext-tag none" title="Không tìm thấy trên NameMC và Ely.by">None Player</span>';
+      }
+      return '<a class="ext-tag nmc" href="' + profileUrl(name, "namemc") + '" target="_blank" rel="noopener" title="Hồ sơ NameMC">Crack</a>';
+    }
+
+    /**
+     * Avatar cascade (không cần CORS):
+     * 1) NameMC / mc-heads
+     * 2) nếu lỗi → Ely.by face
+     * 3) nếu lỗi tiếp → Steve mặc định
+     */
+    // Index name -> player, rebuilt whenever LEADERBOARDS/PLAYERS data changes.
+    // Tránh quét lại toàn bộ mảng (O(n)) mỗi lần render 1 thẻ player.
+    var _playerIndex = Object.create(null);
+    var _playerIndexDirty = true;
+
+    function markPlayerIndexDirty() { _playerIndexDirty = true; }
+
+    function rebuildPlayerIndex() {
+      _playerIndex = Object.create(null);
+      for (var i = 0; i < PLAYERS.length; i++) {
+        if (PLAYERS[i] && PLAYERS[i].name && !(PLAYERS[i].name in _playerIndex)) {
+          _playerIndex[PLAYERS[i].name] = PLAYERS[i];
+        }
+      }
+      for (var c = 0; c < CATEGORIES.length; c++) {
+        var arr = LEADERBOARDS[CATEGORIES[c]] || [];
+        for (var j = 0; j < arr.length; j++) {
+          if (arr[j] && arr[j].name && !(arr[j].name in _playerIndex)) {
+            _playerIndex[arr[j].name] = arr[j];
+          }
+        }
+      }
+      _playerIndexDirty = false;
+    }
+
+    function findPlayer(name) {
+      if (_playerIndexDirty) rebuildPlayerIndex();
+      return (name && _playerIndex[name]) || null;
+    }
+
+    function avatarCraftheadBust(uuidOrName) {
+      var id = cleanId(uuidOrName);
+      if (!isUuid32(id)) id = encodeURIComponent(uuidOrName || "MHF_Steve");
+      return "https://crafthead.net/bust/" + id + "?v=" + skinBust();
+    }
+
+    function imgTag(name, platform) {
+      // TẤT CẢ avatar = 3D BUST giống hình 2 (Crafty.gg)
+      // Không dùng đầu 2D (crafatar/mc-heads/minotar) làm ảnh chính
+      var p = findPlayer(name);
+      var def = avatarDefault();
+      var n = (p && p.name) ? p.name : name;
+      var uuid = (p && (p.uuidNodash || p.uuid)) ? cleanId(p.uuidNodash || p.uuid) : null;
+      var id = (uuid && isUuid32(uuid)) ? uuid : n;
+
+      // Nguồn CHÍNH: Visage (qua avatarCrafty(), đã đổi nguồn — xem định nghĩa phía trên) — cập nhật skin nhanh, ít cache.
+      // Không dùng lại p.face cũ đã cache (trước đây bug giữ nguyên p.face cũ khiến avatar không bao giờ cập nhật).
+      var face = avatarCrafty(id, "bust");
+      p && (p.face = face);
+
+      // Fallback: Crafty (nguồn cũ) → Crafthead → Mineskin
+      var fb1 = avatarCraftyRaw(id);
+      var fb2 = avatarCraftheadBust(id);
+      var fb3 = avatarMineskinBust(id);
+
+      return '<img class="avatar" src="' + face + '" alt="' + n + '"' +
+        ' data-fallback="' + fb1 + '"' +
+        ' data-fallback2="' + fb2 + '"' +
+        ' data-fallback3="' + fb3 + '"' +
+        ' data-default="' + def + '"' +
+        ' onerror="avatarOnError(this)" loading="lazy" decoding="async" />';
+    }
+
+    function findPlatform(name) {
+      var p = findPlayer(name);
+      return (p && p.platform) ? p.platform : "namemc";
+    }
+
+    /* ---------- API lookups (NameMC/Mojang trước → Ely sau) ----------
+       Cache localStorage 1 giờ → xem lại trang KHÔNG gọi API liên tục.
+       Chỉ resolve khi chưa có trong cache / hết hạn.
+    */
+    var _resolveCache = {};
+    var PROFILE_CACHE_KEY = "top_profile_cache_v4";
+    var PROFILE_CACHE_TTL = 60 * 60 * 1000; // 1 giờ
+    var _pvpResolveRunning = false;
+    var _pvpResolveDone = false;
+    var _bootForcing = false; // true trong lúc boot() đang ép dò lại toàn bộ — chặn setCategory() tự kích hoạt resolve(false) chồng lấn
+
+    function loadProfileCache() {
+      try {
+        var raw = localStorage.getItem(PROFILE_CACHE_KEY);
+        if (!raw) return {};
+        var data = JSON.parse(raw);
+        var now = Date.now();
+        var out = {};
+        Object.keys(data).forEach(function (k) {
+          var v = data[k];
+          if (v && v.ts && (now - v.ts) < PROFILE_CACHE_TTL) out[k] = v;
+        });
+        return out;
+      } catch (e) { return {}; }
+    }
+
+    var _saveProfileCacheTimer = null;
+    function saveProfileCache(map) {
+      // Debounce: nhiều lần cacheSet() liên tiếp (vd trong vòng lặp resolve)
+      // chỉ cần ghi localStorage 1 lần cuối cùng, không cần ghi ngay mỗi lần.
+      if (_saveProfileCacheTimer) clearTimeout(_saveProfileCacheTimer);
+      _saveProfileCacheTimer = setTimeout(function () {
+        try { localStorage.setItem(PROFILE_CACHE_KEY, JSON.stringify(map)); } catch (e) {}
+      }, 300);
+    }
+
+    // Reset cache mỗi khi load lại trang: xoá cache cũ để buộc dò lại API + thông tin player từ đầu.
+    try { localStorage.removeItem(PROFILE_CACHE_KEY); } catch (e) {}
+    var _profileStore = {};
+
+    window.addEventListener("pagehide", function () {
+      if (_saveProfileCacheTimer) {
+        clearTimeout(_saveProfileCacheTimer);
+        try { localStorage.setItem(PROFILE_CACHE_KEY, JSON.stringify(_profileStore)); } catch (e) {}
+      }
+    });
+
+    function cacheGet(name) {
+      var k = String(name || "").toLowerCase();
+      if (_resolveCache[k]) return _resolveCache[k];
+      if (_profileStore[k]) {
+        _resolveCache[k] = _profileStore[k];
+        return _profileStore[k];
+      }
+      return null;
+    }
+
+    function cacheSet(name, result) {
+      var k = String(name || "").toLowerCase();
+      var entry = Object.assign({}, result, { ts: Date.now() });
+      _resolveCache[k] = entry;
+      _profileStore[k] = entry;
+      saveProfileCache(_profileStore);
+      return entry;
+    }
+
+    /**
+     * MCTiers API v2 — https://mctiers.com/docs/v2
+     * Base: https://mctiers.com/api/v2
+     *  GET /profile/by-name/{name}      Search Player Profile By Name
+     *  GET /profile/{uuid}              Get Player Profile
+     *  GET /profile/{uuid}/rankings     Get Player Rankings
+     *  GET /profile/by-discord/{id}     Search Player Profile By Discord ID
+     */
+    var MCTIERS_API = "https://mctiers.com/api/v2";
+
+    function mctiersNormalizeUuid(uuid) {
+      if (!uuid) return null;
+      var s = String(uuid).replace(/-/g, "").toLowerCase();
+      if (!/^[0-9a-f]{32}$/.test(s)) return String(uuid);
+      return s.replace(/(.{8})(.{4})(.{4})(.{4})(.{12})/, "$1-$2-$3-$4-$5");
+    }
+
+    function mctiersMapPlayer(data, source) {
+      if (!data) return null;
+      var uname = data.name || data.username || null;
+      var uid = data.uuid || data.minecraft_uuid || null;
+      if (!uname && !uid) return null;
+      var uuidDash = mctiersNormalizeUuid(uid);
+      var uuidNodash = uuidDash ? String(uuidDash).replace(/-/g, "") : null;
+      return {
+        name: uname,
+        uuid: uuidDash,
+        uuidNodash: uuidNodash,
+        discord_id: data.discord_id || data.discordId || null,
+        rankings: data.rankings || null,
+        points: data.points != null ? data.points : null,
+        overall: data.overall != null ? data.overall : null,
+        region: data.region || null,
+        source: source || "mctiers"
+      };
+    }
+
+    async function mctiersProfileByName(name) {
+      try {
+        var res = await fetch(
+          MCTIERS_API + "/profile/by-name/" + encodeURIComponent(name),
+          { mode: "cors" }
+        );
+        if (!res.ok) return null;
+        return mctiersMapPlayer(await res.json(), "mctiers-by-name");
+      } catch (e) { return null; }
+    }
+
+    async function mctiersProfileByUuid(uuid) {
+      try {
+        var id = String(uuid).replace(/-/g, "");
+        var res = await fetch(MCTIERS_API + "/profile/" + encodeURIComponent(id), { mode: "cors" });
+        if (!res.ok) return null;
+        return mctiersMapPlayer(await res.json(), "mctiers-by-uuid");
+      } catch (e) { return null; }
+    }
+
+    async function mctiersPlayerRankings(uuid) {
+      try {
+        var id = String(uuid).replace(/-/g, "");
+        var res = await fetch(MCTIERS_API + "/profile/" + encodeURIComponent(id) + "/rankings", { mode: "cors" });
+        if (!res.ok) return null;
+        return await res.json();
+      } catch (e) { return null; }
+    }
+
+    async function mctiersProfileByDiscord(discordId) {
+      try {
+        var res = await fetch(
+          MCTIERS_API + "/profile/by-discord/" + encodeURIComponent(discordId),
+          { mode: "cors" }
+        );
+        if (!res.ok) return null;
+        return mctiersMapPlayer(await res.json(), "mctiers-by-discord");
+      } catch (e) { return null; }
+    }
+
+    /**
+     * Tra cứu profile Minecraft — ĐÃ ĐỔI THỨ TỰ ƯU TIÊN (mctiers.com đã ngưng cập nhật dữ liệu):
+     * 1) PlayerDB.co — do Nodecraft/Cloudflare bảo trì tích cực, UUID/tên luôn mới nhất
+     * 2) Ashcon (Mojang mirror) — dự phòng, kèm sẵn skinUrl nếu PlayerDB không có
+     * 3) mctiers.com — CHỈ dùng khi cả 2 nguồn trên không tìm thấy (tài khoản hiếm)
+     * Sau khi đã xác định UUID đúng từ nguồn 1/2, tra thêm mctiers THEO UUID (không theo tên)
+     * chỉ để lấy dữ liệu bổ sung (rank PvP, discord_id) — không ảnh hưởng tên/UUID/skin đã xác thực.
+     */
+    async function lookupNameMC(name) {
+      var input = String(name || "").trim();
+      if (!input) return null;
+      var inputLower = input.toLowerCase();
+
+      // Cache hit → không gọi API lại
+      var cached = cacheGet(input);
+      if (cached && (cached.source === "mctiers" || cached.source === "namemc" || cached.source === "none")) {
+        if (cached.source === "none") return null;
+        return {
+          name: cached.name,
+          uuid: cached.uuid,
+          uuidNodash: cached.uuidNodash,
+          skinUrl: cached.skinUrl || null,
+          slim: !!cached.slim,
+          source: cached.source,
+          discord_id: cached.discord_id || null,
+          rankings: cached.rankings || null
+        };
+      }
+
+      var identity = null;
+
+      // 1) PlayerDB.co — nguồn UUID/tên CHÍNH, luôn phản ánh đúng tài khoản Mojang hiện tại
+      try {
+        var res2 = await fetch(
+          "https://playerdb.co/api/player/minecraft/" + encodeURIComponent(input),
+          { mode: "cors" }
+        );
+        if (res2.ok) {
+          var j = await res2.json();
+          var pl = j && j.data && j.data.player ? j.data.player : null;
+          if (pl && pl.id) {
+            var uname = pl.username || input;
+            if (String(uname).toLowerCase() === inputLower) {
+              identity = {
+                name: uname,
+                uuid: pl.id,
+                uuidNodash: String(pl.id).replace(/-/g, ""),
+                skinUrl: null,
+                slim: false,
+                source: "namemc"
+              };
+            }
+          }
+        }
+      } catch (err2) {}
+
+      // 2) Ashcon — dự phòng khi PlayerDB không có kết quả, kèm sẵn skinUrl trực tiếp
+      if (!identity) {
+        try {
+          var res = await fetch(
+            "https://api.ashcon.app/mojang/v2/user/" + encodeURIComponent(input),
+            { mode: "cors" }
+          );
+          if (res.ok) {
+            var data = await res.json();
+            if (data && data.uuid && data.username &&
+                String(data.username).toLowerCase() === inputLower) {
+              identity = {
+                name: data.username,
+                uuid: data.uuid,
+                uuidNodash: String(data.uuid).replace(/-/g, ""),
+                skinUrl: data.textures && data.textures.skin ? data.textures.skin.url : null,
+                slim: data.textures ? !!data.textures.slim : false,
+                source: "namemc"
+              };
+            }
+          }
+        } catch (err) {}
+      }
+
+      // 3) mctiers.com — chỉ khi cả 2 nguồn trên đều thất bại (tài khoản hiếm/không có trên Mojang)
+      if (!identity) {
+        var mt = await mctiersProfileByName(input);
+        if (mt && mt.name) {
+          identity = {
+            name: mt.name,
+            uuid: mt.uuid,
+            uuidNodash: mt.uuidNodash,
+            skinUrl: null,
+            slim: false,
+            source: "mctiers",
+            discord_id: mt.discord_id,
+            rankings: mt.rankings,
+            mctiers: mt
+          };
+        }
+      }
+
+      if (!identity) {
+        cacheSet(input, { name: input, source: "none", uuid: null, uuidNodash: null });
+        return null;
+      }
+
+      // Bổ sung dữ liệu xếp hạng PvP từ mctiers THEO UUID đã xác thực (nếu có) — không ghi đè tên/UUID/skin
+      if (!identity.rankings && identity.uuid) {
+        try {
+          var mtByUuid = await mctiersProfileByUuid(identity.uuid);
+          if (mtByUuid) {
+            identity.discord_id = mtByUuid.discord_id || identity.discord_id || null;
+            identity.rankings = mtByUuid.rankings || identity.rankings || null;
+            identity.mctiers = mtByUuid;
+          }
+        } catch (e) {}
+      }
+
+      cacheSet(input, identity);
+      return identity;
+    }
+
+    /**
+     * Tra cứu Ely.by — cùng cách SkinRestorer / Ely4Everyone:
+     * 1) authserver.ely.by/api/users/profiles/minecraft/{name}
+     *    → UUID + username hiện tại (chỉ có nếu là tài khoản Ely)
+     * 2) skinsystem.ely.by/textures/{name}
+     *    → xác nhận có texture (SkinRestorer lấy skin qua endpoint này)
+     * 204 / lỗi = không có trên Ely
+     * Lưu ý: profile web ely.by/u{ID} cần ID số (OAuth), public API không trả ID đó.
+     */
+    async function lookupEly(name) {
+      try {
+        // Bước 1: UUID theo username (API mô phỏng Mojang của Ely)
+        var res = await fetch(
+          "https://authserver.ely.by/api/users/profiles/minecraft/" + encodeURIComponent(name)
+        );
+        if (res.status === 204 || !res.ok) return null;
+        var data = await res.json();
+        if (!data || !data.id || !data.name) return null;
+
+        // Bước 2 (không chặn): xác nhận texture qua skinsystem như SkinRestorer
+        // Không fail lookup nếu textures 204 — account vẫn tồn tại trên authserver
+        try {
+          await fetch(
+            "https://skinsystem.ely.by/textures/" + encodeURIComponent(data.name),
+            { method: "GET", mode: "cors" }
+          );
+        } catch (e) { /* CORS/network — bỏ qua, authserver đã đủ */ }
+
+        return {
+          name: data.name, // username HIỆN TẠI đúng casing từ Ely
+          uuid: data.id,
+          uuidNodash: String(data.id).replace(/-/g, ""),
+          source: "ely"
+        };
+      } catch (err) {
+        return null;
+      }
+    }
+
+    /**
+     * Resolve player:
+     *   - Tra cả NameMC và Ely.by (song song về mặt logic)
+     *   - Nếu CẢ HAI tồn tại (vd: clownware vs ClownWare):
+     *       ưu tiên khớp ĐÚNG ký tự (case-sensitive) với tên đang tìm
+     *       → tránh nhầm tài khoản Mojang "clownware" với Ely "ClownWare"
+     *   - Nếu chỉ một bên có → dùng bên đó
+     *   - Không có → None Player
+     *   - preferredPlatform: "ely" | "namemc" | null — ép ưu tiên khi đã biết trước
+     */
+    async function resolvePlayer(name, preferredPlatform) {
+      var key = String(name) + "|" + (preferredPlatform || "");
+      if (_resolveCache[key]) return _resolveCache[key];
+
+      function toNmc(nmc) {
+        return {
+          name: nmc.name,
+          platform: "namemc",
+          uuid: nmc.uuid,
+          uuidNodash: nmc.uuidNodash,
+          skinUrl: nmc.skinUrl,
+          source: "namemc"
+        };
+      }
+      function toEly(ely) {
+        return {
+          name: ely.name,
+          platform: "ely",
+          uuid: ely.uuid,
+          uuidNodash: ely.uuidNodash,
+          source: "ely"
+        };
+      }
+
+      // Nếu đã chỉ định platform ely → chỉ tra Ely (tránh đè bởi NameMC case-insensitive)
+      if (preferredPlatform === "ely") {
+        var elyOnly = await lookupEly(name);
+        var outEly = elyOnly ? toEly(elyOnly) : { name: name, platform: "ely", source: "ely-forced" };
+        _resolveCache[key] = outEly;
+        return outEly;
+      }
+      if (preferredPlatform === "namemc") {
+        var nmcOnly = await lookupNameMC(name);
+        var outNmc = nmcOnly ? toNmc(nmcOnly) : { name: name, platform: "namemc", source: "namemc-forced" };
+        _resolveCache[key] = outNmc;
+        return outNmc;
+      }
+
+      // Tra cả hai
+      var nmc = await lookupNameMC(name);
+      var ely = await lookupEly(name);
+
+      var result;
+      if (nmc && ely) {
+        var nmcExact = nmc.name === name;
+        var elyExact = ely.name === name;
+        // Khớp đúng ký tự được ưu tiên
+        if (elyExact && !nmcExact) {
+          result = toEly(ely);
+        } else if (nmcExact && !elyExact) {
+          result = toNmc(nmc);
+        } else {
+          // Cùng mức khớp → NameMC trước (theo quy tắc mặc định)
+          result = toNmc(nmc);
+        }
+      } else if (nmc) {
+        result = toNmc(nmc);
+      } else if (ely) {
+        result = toEly(ely);
+      } else {
+        result = { name: name, platform: "none", source: "none" };
+      }
+
+      _resolveCache[key] = result;
+      return result;
+    }
+
+    /**
+     * Bổ sung field còn thiếu — không ghi đè data bot đã gửi.
+     * Bot: name, platform, uuid, skin, elyId (thứ tự mảng = rank).
+     */
+    async function autoResolvePlayers(force) {
+      for (var i = 0; i < PLAYERS.length; i++) {
+        var p = PLAYERS[i];
+        if (!force && p.resolved) continue;
+        if (!force && p.platform && p.platform !== "none" && (p.uuid || p.elyId || p.skin)) {
+          p.resolved = true;
+          continue;
+        }
+        try {
+          var preferred = (p.platform === "ely" || p.platform === "namemc") ? p.platform : null;
+          Object.keys(_resolveCache).forEach(function (k) {
+            if (k.toLowerCase().indexOf(String(p.name).toLowerCase()) === 0) delete _resolveCache[k];
+          });
+          var r = await resolvePlayer(p.name, preferred);
+          // Luôn cập nhật tên mới nhất từ API, không giữ tên cũ (kể cả khi có nameLocked).
+          if (r.name) p.name = r.name;
+          if (!p.platform || p.platform === "none" || force) p.platform = r.platform;
+          // Luôn cập nhật UUID mới nhất khi force (không giữ UUID cũ có thể đã lỗi thời).
+          if (r.uuid && (force || !p.uuid)) p.uuid = r.uuid;
+          if (r.uuidNodash && (force || !p.uuidNodash)) p.uuidNodash = r.uuidNodash;
+          if (force) p.skin = null; // reset để buộc dò & tải lại ảnh skin mới nhất
+          if (!p.skin) {
+            // Lưu full skin (bot/SkinRestorer); avatar UI dùng face riêng
+            if (p.platform === "ely") p.skin = skinElyFull(p.name);
+            else if (p.platform === "namemc") p.skin = avatarNameMC(p.name);
+          }
+          if (force) p.face = null; // buộc imgTag() tính lại avatar theo UUID/skin mới
+          p.resolved = true;
+        } catch (e) {}
+      }
+      renderRankings();
+      renderChampionship();
+      return PLAYERS;
+    }
+
+    /* =========================================================
+       PvP · TRA CỨU NAMEMC (Mojang)
+       Với MỌI player trong leaderboards.pvp:
+         1) Tra NameMC/Mojang (Ashcon) → tên đúng hoa/thường + UUID + skin
+         2) Ảnh đại diện = face từ skin NameMC (mc-heads)
+         3) Gắn tag ★ PREMIUM nếu tìm thấy trên Mojang
+         4) Không có trên NameMC → thử Ely.by
+         5) Không có cả hai → None Player
+       Chỉ cần ghi "name" + "rank" trong JSON; hệ thống tự lấy skin & tên chuẩn.
+       ========================================================= */
+    /** Áp cache localStorage vào 1 player — không gọi mạng, không render */
+    function applyCachedProfile(p) {
+      if (!p || !p.name) return false;
+      var cached = cacheGet(p.name);
+      if (!cached || !cached.source || cached.source === "pending") return false;
+      if (cached.source === "mctiers" || cached.source === "namemc") {
+        if (cached.name && String(cached.name).toLowerCase() === String(p.name).toLowerCase()) {
+          p.name = cached.name;
+        }
+        p.uuid = cached.uuid || p.uuid;
+        p.uuidNodash = cached.uuidNodash || (p.uuid ? String(p.uuid).replace(/-/g, "") : null);
+        setPlayerLiveFace(p); // skin đang mặc theo UUID
+        p.platform = "namemc";
+        p.premium = true;
+        p.discord_id = cached.discord_id || p.discord_id || null;
+        p.premiumResolved = true;
+        return true;
+      }
+      if (cached.source === "ely") {
+        p.name = cached.name || p.name;
+        p.uuid = cached.uuid || p.uuid;
+        p.uuidNodash = cached.uuidNodash || null;
+        p.face = avatarEly(p.name);
+        p.platform = "ely";
+        p.premium = false;
+        p.premiumResolved = true;
+        return true;
+      }
+      if (cached.source === "none") {
+        p.platform = p.platform || "none";
+        p.premium = false;
+        p.face = p.face || avatarNameMC(p.name);
+        p.premiumResolved = true;
+        return true;
+      }
+      return false;
+    }
+
+    /**
+     * Resolve PvP: chỉ chạy 1 lần / phiên.
+     * - Cache hit → áp dụng im lặng, render 1 lần cuối
+     * - Chỉ gọi API cho player chưa có cache
+     * - Không refresh UI từng player (tránh “load liên tục”)
+     */
+    async function enforcePremiumForPvp(force) {
+      var arr = LEADERBOARDS.pvp || [];
+      if (!arr.length) return arr;
+
+      if (!force) {
+        if (_pvpResolveRunning) return arr;
+        if (_pvpResolveDone) return arr;
+      }
+
+      _pvpResolveRunning = true;
+
+      // Pass 1: chỉ dùng cache — không network
+      var needNetwork = [];
+      for (var i = 0; i < arr.length; i++) {
+        var p = arr[i];
+        if (!p || !p.name) continue;
+        if (!force && p.premiumResolved) continue;
+        if (!p.face) p.face = avatarNameMC(p.name);
+        if (!force && applyCachedProfile(p)) continue;
+        needNetwork.push(p);
+      }
+
+      // Render 1 lần sau khi áp cache (UI ổn định ngay)
+      if (currentCat === "pvp") {
+        PLAYERS = LEADERBOARDS.pvp.slice();
+        renderRankings();
+      }
+
+      // Pass 2: chỉ player chưa cache — tuần tự, render 1 lần khi xong hết
+      for (var j = 0; j < needNetwork.length; j++) {
+        var pl = needNetwork[j];
+        if (!force && pl.premiumResolved) continue;
+
+        if (pl.platform === "ely") {
+          try {
+            var ely = await lookupEly(pl.name);
+            if (ely) {
+              pl.name = ely.name;
+              pl.uuid = ely.uuid;
+              pl.uuidNodash = ely.uuidNodash;
+              pl.face = avatarEly(ely.name);
+              pl.skin = skinElyFull(ely.name);
+              pl.platform = "ely";
+              pl.premium = false;
+              cacheSet(pl.name, { name: ely.name, uuid: ely.uuid, uuidNodash: ely.uuidNodash, source: "ely" });
+            } else {
+              pl.platform = "ely";
+              pl.premium = false;
+              pl.face = avatarEly(pl.name);
+            }
+          } catch (e) {
+            pl.face = pl.face || avatarEly(pl.name);
+          }
+          pl.premiumResolved = true;
+          await new Promise(function (r) { setTimeout(r, 50); });
+          continue;
+        }
+
+        try {
+          var r = await lookupNameMC(pl.name);
+          if (r) {
+            if (r.name && String(r.name).toLowerCase() === String(pl.name).toLowerCase()) {
+              pl.name = r.name;
+            }
+            pl.uuid = r.uuid || pl.uuid;
+            pl.uuidNodash = r.uuidNodash || (pl.uuid ? String(pl.uuid).replace(/-/g, "") : null);
+            pl.skin = r.skinUrl || pl.skin;
+            setPlayerLiveFace(pl); // skin đang mặc (UUID → Mojang live)
+            pl.platform = (r.source === "mctiers") ? "namemc" : (r.source || "namemc");
+            pl.premium = (r.source === "mctiers" || r.source === "namemc");
+            pl.discord_id = r.discord_id || pl.discord_id || null;
+            pl.mctiersRankings = r.rankings || null;
+          } else {
+            var ely2 = await lookupEly(pl.name);
+            if (ely2) {
+              pl.name = ely2.name;
+              pl.uuid = ely2.uuid;
+              pl.uuidNodash = ely2.uuidNodash;
+              pl.face = avatarEly(ely2.name);
+              pl.skin = skinElyFull(ely2.name);
+              pl.platform = "ely";
+              pl.premium = false;
+              cacheSet(pl.name, { name: ely2.name, uuid: ely2.uuid, uuidNodash: ely2.uuidNodash, source: "ely" });
+            } else {
+              pl.platform = pl.platform || "none";
+              pl.premium = false;
+              pl.face = avatarNameMC(pl.name);
+            }
+          }
+        } catch (e) {
+          pl.face = pl.face || avatarNameMC(pl.name);
+        }
+        pl.premiumResolved = true;
+        await new Promise(function (r) { setTimeout(r, 50); });
+      }
+
+      // Render đúng 1 lần cuối — không lặp khi đang xem
+      if (currentCat === "pvp") {
+        PLAYERS = LEADERBOARDS.pvp.slice();
+        renderRankings();
+      }
+
+      _pvpResolveRunning = false;
+      _pvpResolveDone = true;
+      return arr;
+    }
+
+    function normalizePlayerRow(row) {
+      var name = String(row.name || "").trim();
+      var platform = row.platform ? String(row.platform).toLowerCase() : null;
+      if (platform === "nmc") platform = "namemc";
+      // Mặc định: namemc (tra Mojang khi load PvP); avatar luôn gắn ngay
+      if (!platform) platform = "namemc";
+      var elyId = normalizeElyId(row.elyId) || normalizeElyId(row.profileLink) || null;
+      var face = row.face || null;
+      if (!face && name) {
+        face = (platform === "ely") ? avatarEly(name) : avatarCrafty(name);
+      }
+      // Đảm bảo luôn có face để UI không trống
+      if (!face) face = avatarDefault();
+      // Thứ hạng: field "rank" / "thuHang" / "position" — số nguyên > 0
+      var rankRaw = row.rank != null ? row.rank : (row.thuHang != null ? row.thuHang : row.position);
+      var rankNum = parseInt(rankRaw, 10);
+      if (isNaN(rankNum) || rankNum < 1) rankNum = null;
+      // Nghệ danh: field "title" / "ngheDanh" / "nickname"
+      var titleCustom = row.title || row.ngheDanh || row.nickname || null;
+      if (titleCustom != null) titleCustom = String(titleCustom).trim() || null;
+      return {
+        name: name,
+        platform: platform,
+        uuid: row.uuid || null,
+        uuidNodash: row.uuidNodash || (row.uuid ? String(row.uuid).replace(/-/g, "") : null),
+        skin: row.skin || null,
+        face: face,
+        elyId: elyId,
+        profileLink: row.profileLink || (elyId ? ("https://ely.by/u" + elyId) : null),
+        rank: rankNum,
+        title: titleCustom,
+        nameLocked: true,
+        resolved: true
+      };
+    }
+
+    /** Sắp xếp theo field rank (nhỏ → lớn). Ai không có rank xếp sau, giữ thứ tự gốc. */
+    function sortPlayersByRank(arr) {
+      if (!Array.isArray(arr) || !arr.length) return arr || [];
+      return arr.slice().sort(function (a, b) {
+        var ra = (a.rank != null && a.rank > 0) ? a.rank : 999999;
+        var rb = (b.rank != null && b.rank > 0) ? b.rank : 999999;
+        if (ra !== rb) return ra - rb;
+        return 0;
+      });
+    }
+
+    function mapPlayerList(arr) {
+      if (!Array.isArray(arr)) return [];
+      var mapped = arr.filter(function (r) { return r && r.name; }).map(normalizePlayerRow);
+      var hasRank = mapped.some(function (p) { return p.rank != null; });
+      return hasRank ? sortPlayersByRank(mapped) : mapped;
+    }
+
+    /** Load leaderboards.json — object theo category. Hỗ trợ file cũ players.json (array = rankings). */
+    async function loadPlayersFromBot() {
+      try {
+        var res = await fetch(DATA_URL + "?t=" + Date.now(), { cache: "no-store" });
+        if (!res.ok) {
+          res = await fetch("players.json?t=" + Date.now(), { cache: "no-store" });
+          if (!res.ok) throw new Error("HTTP " + res.status);
+          var arr = await res.json();
+          LEADERBOARDS.rankings = mapPlayerList(arr);
+          PLAYERS = LEADERBOARDS[currentCat] || [];
+          return true;
+        }
+        var data = await res.json();
+        if (Array.isArray(data)) {
+          LEADERBOARDS.rankings = mapPlayerList(data);
+        } else if (data && typeof data === "object") {
+          CATEGORIES.forEach(function (c) {
+            LEADERBOARDS[c] = mapPlayerList(data[c] || []);
+          });
+        } else {
+          throw new Error("invalid");
+        }
+        PLAYERS = LEADERBOARDS[currentCat] || [];
+        console.info("[TOP] Loaded leaderboards", currentCat, PLAYERS.length);
+        return true;
+      } catch (err) {
+        console.warn("[TOP] leaderboards load:", err.message || err);
+        return false;
+      }
+    }
+
+    function setCategory(cat) {
+      if (CATEGORIES.indexOf(cat) < 0) cat = "rankings";
+      currentCat = cat;
+      PLAYERS = LEADERBOARDS[cat] || [];
+      document.querySelectorAll("#lbSubnav .subnav-btn").forEach(function (b) {
+        b.classList.toggle("active", b.getAttribute("data-cat") === cat);
+      });
+      var titleEl = document.getElementById("lbCatTitle");
+      if (titleEl) titleEl.innerHTML = CAT_TITLES[cat] || CAT_LABELS[cat];
+      var desc = document.getElementById("lbDesc");
+      if (desc) {
+        if (cat === "rankings") {
+          desc.textContent = "TOP POTENTIAL · Thành Phần Bất Hảo";
+        } else if (cat === "pvp") {
+          desc.textContent = "PvP";
+        } else {
+          desc.textContent = CAT_LABELS[cat] + " Cần Đơn Xin Việc ";
+        }
+      }
+      renderRankings();
+      
+      if (cat === "pvp" && !_bootForcing && !_pvpResolveDone && !_pvpResolveRunning) {
+        enforcePremiumForPvp(false);
+      }
+    }
+
+    /* ========== RANKINGS ========== */
+    /**
+     * Nghệ danh / biệt danh — CHỈ lấy từ leaderboards.json
+     * Field: "title" | "ngheDanh" | "nickname"
+     * Không dùng RANK_TITLES / PVP_RANK_TITLES trong code.
+     * Muốn đổi biệt danh → sửa leaderboards.json rồi reload.
+     */
+    function getRankTitle(p, rank) {
+      if (p && p.title) return String(p.title);
+      return "";
+    }
+
+    function renderPlayerCardFilled(p, rank) {
+      var name = p.name;
+      var platform = p.platform || "namemc";
+      var title = getRankTitle(p, rank);
+      var tag = getNametag(rank);
+      var numCls = rank === 1 ? "r1" : rank === 2 ? "r2" : rank === 3 ? "r3" : "other";
+      var cardCls = rank <= 7 ? "rank-card top7" : "rank-card";
+      var titleCls = title ? "rank-title gradient-anim" : "rank-title empty";
+      var pUrl = profileUrl(name, platform);
+      var nameHtml = (!pUrl || pUrl === "#" || platform === "none")
+        ? '<span class="player-name">' + name + '</span>'
+        : '<span class="player-name"><a href="' + pUrl + '" target="_blank" rel="noopener">' + name + '</a></span>';
+      var mobileTitle = title
+        ? '<div class="mobile-title gradient-anim">' + title + '</div>'
+        : '';
+      return '<div class="' + cardCls + '">' +
+        '<div class="rank-num ' + numCls + '">#' + rank + '</div>' +
+        imgTag(name, platform) +
+        '<div class="player-info">' +
+          '<div class="player-name-row">' +
+            nameHtml +
+            platformTag(name, platform) +
+          '</div>' +
+          '<span class="nametag ' + tag.cls + '">' + tag.text + '</span>' +
+          mobileTitle +
+        '</div>' +
+        '<div class="' + titleCls + '">' + title + '</div>' +
+      '</div>';
+    }
+
+    /** Ô trống — không tự thêm tài khoản, chỉ giữ chỗ theo số rank */
+    function renderPlayerCardEmpty(rank) {
+      var numCls = rank === 1 ? "r1" : rank === 2 ? "r2" : rank === 3 ? "r3" : "other";
+      return '<div class="rank-card slot-empty">' +
+        '<div class="rank-num ' + numCls + '">#' + rank + '</div>' +
+        '<img class="avatar" src="' + avatarDefault() + '" alt="Trống" />' +
+        '<div class="player-info">' +
+          '<div class="player-name-row"><span class="player-name">Trống</span></div>' +
+        '</div>' +
+        '<div class="rank-title empty"></div>' +
+      '</div>';
+    }
+
+    function renderRankings() {
+      markPlayerIndexDirty();
+      var list = document.getElementById("rankList");
+      list.classList.remove("animating");
+      void list.offsetWidth;
+      list.classList.add("animating");
+      if (!PLAYERS.length) {
+        list.innerHTML = '<div class="regs-placeholder" style="padding:32px 20px"><h3>Chưa có player</h3><p>Mục <strong>' + (CAT_LABELS[currentCat] || currentCat) + '</strong> đang trống <br>Hệ thống: Đang xếp </p></div>';
+        return;
+      }
+
+      /*
+        Xếp hạng theo leaderboards.json — KHÔNG GIỚI HẠN số hạng:
+        - Thêm bao nhiêu player / rank cũng được (1, 50, 100, 999…)
+        - rank trong file = số # hiển thị
+        - Chỉ hiện player có trong JSON (không tự chèn ô trống gap)
+        - Trùng rank → giữ player xuất hiện trước trong file
+        - Không có field rank → xếp cuối, theo thứ tự file
+      */
+      var byRank = {};
+      var noRank = [];
+      var rankOrder = [];
+
+      PLAYERS.forEach(function (p) {
+        var r = p.rank;
+        if (r != null) r = parseInt(r, 10);
+        if (r != null && !isNaN(r) && r > 0) {
+          p.rank = r;
+          if (!byRank[r]) {
+            byRank[r] = p;
+            rankOrder.push(r);
+          }
+        } else {
+          p.rank = null;
+          noRank.push(p);
+        }
+      });
+
+      rankOrder.sort(function (a, b) { return a - b; });
+
+      var parts = [];
+      rankOrder.forEach(function (n) {
+        parts.push(renderPlayerCardFilled(byRank[n], n));
+      });
+      var nextNum = rankOrder.length ? (rankOrder[rankOrder.length - 1] + 1) : 1;
+      noRank.forEach(function (p, i) {
+        parts.push(renderPlayerCardFilled(p, nextNum + i));
+      });
+
+      list.innerHTML = parts.join("");
+    }
+
+
+        /* ========== CHAMPIONSHIP STATUS ========== */
+    var DAY_NAMES = ["Chủ Nhật", "Thứ Hai", "Thứ Ba", "Thứ Tư", "Thứ Năm", "Thứ Sáu", "Thứ Bảy"];
+
+    function updateVnClock() {
+      var now = new Date();
+      var vn = new Date(now.getTime() + (7 * 60 + now.getTimezoneOffset()) * 60000);
+      var h = String(vn.getHours()).padStart(2, "0");
+      var m = String(vn.getMinutes()).padStart(2, "0");
+      var s = String(vn.getSeconds()).padStart(2, "0");
+      var day = DAY_NAMES[vn.getDay()];
+      var d = String(vn.getDate()).padStart(2, "0");
+      var mo = String(vn.getMonth() + 1).padStart(2, "0");
+      var y = vn.getFullYear();
+      var clockEl = document.getElementById("vnClock");
+      var dateEl = document.getElementById("vnDate");
+      if (clockEl) clockEl.textContent = h + ":" + m + ":" + s;
+      if (dateEl) dateEl.textContent = day + ", " + d + "/" + mo + "/" + y;
+    }
+
+    function getChampStatus() {
+      var now = new Date();
+      var vn = new Date(now.getTime() + (7 * 60 + now.getTimezoneOffset()) * 60000);
+      var day = vn.getDay();
+      return day === 6 || day === 0;
+    }
+
+    /* ========== BRACKET RENDER ========== */
+    function emptyMatch() {
+      return { p1: null, s1: null, p2: null, s2: null };
+    }
+
+    function ensureChampStructure() {
+      CHAMP = CHAMPS[currentChampCat] || emptyChampData();
+      CHAMPS[currentChampCat] = CHAMP;
+      if (!CHAMP.upperR1 || CHAMP.upperR1.length !== 8) {
+        CHAMP.upperR1 = Array.from({ length: 8 }, emptyMatch);
+      }
+      if (!CHAMP.upperR2 || CHAMP.upperR2.length !== 4) {
+        CHAMP.upperR2 = Array.from({ length: 4 }, emptyMatch);
+      }
+      if (!CHAMP.upperSF || CHAMP.upperSF.length !== 2) {
+        CHAMP.upperSF = Array.from({ length: 2 }, emptyMatch);
+      }
+      if (!CHAMP.upperFinal || CHAMP.upperFinal.length !== 1) {
+        CHAMP.upperFinal = [emptyMatch()];
+      }
+      if (!CHAMP.grandFinal || CHAMP.grandFinal.length !== 1) {
+        CHAMP.grandFinal = [emptyMatch()];
+      }
+      if (!CHAMP.lowerR1 || CHAMP.lowerR1.length !== 4) {
+        CHAMP.lowerR1 = Array.from({ length: 4 }, emptyMatch);
+      }
+      if (!CHAMP.lowerR2 || CHAMP.lowerR2.length !== 4) {
+        CHAMP.lowerR2 = Array.from({ length: 4 }, emptyMatch);
+      }
+      if (!CHAMP.lowerR3 || CHAMP.lowerR3.length !== 2) {
+        CHAMP.lowerR3 = Array.from({ length: 2 }, emptyMatch);
+      }
+      if (!CHAMP.lowerR4 || CHAMP.lowerR4.length !== 2) {
+        CHAMP.lowerR4 = Array.from({ length: 2 }, emptyMatch);
+      }
+      if (!CHAMP.lowerR5 || CHAMP.lowerR5.length !== 1) {
+        CHAMP.lowerR5 = [emptyMatch()];
+      }
+      if (!CHAMP.lowerFinal || CHAMP.lowerFinal.length !== 1) {
+        CHAMP.lowerFinal = [emptyMatch()];
+      }
+    }
+
+    function slotHTML(name, score, isWinner, isTBD) {
+      if (isTBD || !name) {
+        return '<div class="match-slot tbd">' +
+          '<img src="' + avatarDefault() + '" alt="TBD" />' +
+          '<span class="slot-name">TBD</span>' +
+          '<span class="slot-score">—</span></div>';
+      }
+      var platform = findPlatform(name);
+      var p = findPlayer(name);
+      var id = (p && p.uuidNodash) ? p.uuidNodash : name;
+      var face = avatarCrafty(id, "bust");
+      var pUrl = profileUrl(name, platform);
+      var nameInner = (!pUrl || pUrl === "#")
+        ? name
+        : '<a href="' + pUrl + '" target="_blank" rel="noopener">' + name + '</a>';
+      return '<div class="match-slot' + (isWinner ? " winner" : "") + '">' +
+        '<img src="' + face + '" alt="' + name + '"' +
+          ' data-fallback="' + avatarVisageBust(id) + '"' +
+          ' data-fallback2="' + avatarCraftheadBust(id) + '"' +
+          ' data-default="' + avatarDefault() + '"' +
+          ' onerror="avatarOnError(this)" loading="lazy" decoding="async" />' +
+        '<span class="slot-name">' + nameInner + '</span>' +
+        '<span class="slot-score">' + (score != null ? score : "—") + '</span></div>';
+    }
+
+    function matchHTMLFromObj(m) {
+      m = m || emptyMatch();
+      var p1 = m.p1, s1 = m.s1, p2 = m.p2, s2 = m.s2;
+      var w1 = s1 != null && s2 != null && s1 > s2;
+      var w2 = s1 != null && s2 != null && s2 > s1;
+      return '<div class="match">' +
+        slotHTML(p1, s1, w1, !p1) +
+        slotHTML(p2, s2, w2, !p2) +
+        '</div>';
+    }
+
+    /* Lá = 1 match round 1 */
+    function bkLeaf(m) {
+      return '<div class="bk-leaf">' + matchHTMLFromObj(m) + '</div>';
+    }
+
+    /* Node 2→1: children + fork + match */
+    function bkForkNode(childHtml, matchObj) {
+      return '<div class="bk-node">' +
+        '<div class="bk-node-children">' + childHtml + '</div>' +
+        '<div class="bk-fork" aria-hidden="true"></div>' +
+        matchHTMLFromObj(matchObj) +
+      '</div>';
+    }
+
+    /* Node 1→1: child + line + match */
+    function bkLineNode(childHtml, matchObj) {
+      return '<div class="bk-node">' +
+        childHtml +
+        '<div class="bk-line" aria-hidden="true"></div>' +
+        matchHTMLFromObj(matchObj) +
+      '</div>';
+    }
+
+    function headersHTML(titles) {
+      var h = '<div class="bk-headers">';
+      for (var i = 0; i < titles.length; i++) {
+        if (i > 0) h += '<div class="bk-h-gap"></div>';
+        h += '<span>' + titles[i] + '</span>';
+      }
+      return h + '</div>';
+    }
+
+    function renderUpperTree() {
+      var r1 = CHAMP.upperR1;
+      var r2 = CHAMP.upperR2;
+      var sf = CHAMP.upperSF;
+      var uf = CHAMP.upperFinal;
+      var gf = CHAMP.grandFinal;
+
+      // 4 nhánh R1→R2
+      var r2nodes = [];
+      for (var i = 0; i < 4; i++) {
+        r2nodes.push(bkForkNode(
+          bkLeaf(r1[i * 2]) + bkLeaf(r1[i * 2 + 1]),
+          r2[i]
+        ));
+      }
+      // 2 nhánh R2→SF
+      var sf0 = bkForkNode(r2nodes[0] + r2nodes[1], sf[0]);
+      var sf1 = bkForkNode(r2nodes[2] + r2nodes[3], sf[1]);
+      // SF → Upper Final
+      var ufNode = bkForkNode(sf0 + sf1, uf[0]);
+      // Upper Final → Grand Final (1→1)
+      var gfNode = bkLineNode(ufNode, gf[0]);
+
+      return headersHTML(["Round 1", "Round 2", "Semifinal", "Upper Final", "Grand Final"]) +
+        '<div class="bk-stack">' + gfNode + '</div>';
+    }
+
+    function renderLowerTree() {
+      var l1 = CHAMP.lowerR1;
+      var l2 = CHAMP.lowerR2;
+      var l3 = CHAMP.lowerR3;
+      var l4 = CHAMP.lowerR4;
+      var l5 = CHAMP.lowerR5;
+      var lf = CHAMP.lowerFinal;
+
+      // L1 (4) → L2 (4) nối thẳng từng cặp
+      var l2nodes = [];
+      for (var i = 0; i < 4; i++) {
+        l2nodes.push(bkLineNode(bkLeaf(l1[i]), l2[i]));
+      }
+      // L2 (4) → L3 (2) fork
+      var l3_0 = bkForkNode(l2nodes[0] + l2nodes[1], l3[0]);
+      var l3_1 = bkForkNode(l2nodes[2] + l2nodes[3], l3[1]);
+      // L3 (2) → L4 (2) nối thẳng
+      var l4_0 = bkLineNode(l3_0, l4[0]);
+      var l4_1 = bkLineNode(l3_1, l4[1]);
+      // L4 (2) → L5 (1) fork
+      var l5node = bkForkNode(l4_0 + l4_1, l5[0]);
+      // L5 → Lower Final (1→1)
+      var lfNode = bkLineNode(l5node, lf[0]);
+
+      return headersHTML(["Round 1", "Round 2", "Round 3", "Round 4", "Round 5", "Lower Final"]) +
+        '<div class="bk-stack">' + lfNode + '</div>';
+    }
+
+    function renderBracket() {
+      markPlayerIndexDirty();
+      ensureChampStructure();
+      var el = document.getElementById("bracket");
+
+      var upper =
+        '<div class="bracket-section upper">' +
+          '<div class="bracket-section-label">Upper Bracket</div>' +
+          '<div class="bracket-row">' + renderUpperTree() + '</div>' +
+        '</div>';
+
+      var lower =
+        '<div class="bracket-section lower">' +
+          '<div class="bracket-section-label">Lower Bracket</div>' +
+          '<div class="bracket-row">' + renderLowerTree() + '</div>' +
+        '</div>';
+
+      var champBlock = "";
+      if (CHAMP.champion) {
+        var c = CHAMP.champion;
+        var plat = findPlatform(c);
+        var p = findPlayer(c);
+        var face = avatarCrafty((p && p.uuidNodash) || c, "bust");
+        champBlock =
+          '<div class="champion-player">' +
+            '<div class="champ-label">Champion</div>' +
+            '<img src="' + face + '" alt="' + c + '" onerror="avatarOnError(this)" data-default="' + avatarDefault() + '" />' +
+            '<div class="name">' + c + '</div>' +
+            platformTag(c, plat) +
+          '</div>';
+      }
+
+      var catLabel = CHAMP_CAT_LABELS[currentChampCat] || currentChampCat;
+      el.innerHTML = upper + lower + champBlock +
+        '<p class="champ-empty-note">Bot: /chamopen · /chamadd (nhánh ' + catLabel + ', tối đa 16 player) · random cặp Round 1</p>';
+    }
+
+    function setChampCategory(cat) {
+      if (CHAMP_CATS.indexOf(cat) < 0) cat = "pvp";
+      currentChampCat = cat;
+      CHAMP = CHAMPS[cat] || emptyChampData();
+      CHAMPS[cat] = CHAMP;
+      document.querySelectorAll("#champSubnav .subnav-btn").forEach(function (b) {
+        b.classList.toggle("active", b.getAttribute("data-champ-cat") === cat);
+      });
+      var desc = document.getElementById("champDesc");
+      if (desc) {
+        desc.textContent = "Championship · " + (CHAMP_CAT_LABELS[cat] || cat) + " · Lịch theo Chủ Nhật hàng tuần";
+      }
+      renderChampionship();
+    }
+
+    function renderChampionship() {
+      CHAMP = CHAMPS[currentChampCat] || emptyChampData();
+      var isOpen = (CHAMP.status === "open") || (CHAMP.status !== "closed" && getChampStatus());
+      if (CHAMP.status === "closed") isOpen = false;
+      if (CHAMP.status === "open") isOpen = true;
+      var statusEl = document.getElementById("champStatus");
+      if (statusEl) {
+        statusEl.textContent = isOpen ? "ĐANG MỞ" : "ĐÃ ĐÓNG";
+        statusEl.className = "status-value " + (isOpen ? "open" : "closed");
+      }
+      renderBracket();
+    }
+
+    function isChampBracketObject(obj) {
+      return obj && typeof obj === "object" && (
+        Array.isArray(obj.upperR1) ||
+        obj.status === "open" ||
+        obj.status === "closed" ||
+        obj.champion != null
+      );
+    }
+
+    async function loadChampFromBot() {
+      try {
+        var res = await fetch("bracket.json?t=" + Date.now(), { cache: "no-store" });
+        if (!res.ok) throw new Error("no bracket.json");
+        var data = await res.json();
+        if (!data || typeof data !== "object") throw new Error("invalid");
+
+        var hasCats = CHAMP_CATS.some(function (c) { return data[c] && typeof data[c] === "object"; });
+        if (hasCats) {
+          CHAMP_CATS.forEach(function (c) {
+            if (data[c] && typeof data[c] === "object") {
+              CHAMPS[c] = Object.assign(emptyChampData(), data[c]);
+            }
+          });
+          console.info("[TOP] Loaded bracket.json (multi-category)");
+        } else if (isChampBracketObject(data)) {
+          CHAMPS.pvp = Object.assign(emptyChampData(), data);
+          console.info("[TOP] Loaded bracket.json (legacy → pvp)");
+        } else {
+          throw new Error("unrecognized format");
+        }
+        CHAMP = CHAMPS[currentChampCat];
+        return true;
+      } catch (e) {
+        console.warn("[TOP] bracket.json:", e.message || e);
+      }
+      return false;
+    }
+
+
+        /* ========== TABS ========== */
+    document.querySelectorAll(".nav-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        document.querySelectorAll(".nav-btn").forEach(function (b) { b.classList.remove("active"); });
+        document.querySelectorAll(".panel").forEach(function (p) { p.classList.remove("active"); });
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+      });
+    });
+
+    document.querySelectorAll(".subnav-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var cat = btn.getAttribute("data-cat");
+        var champCat = btn.getAttribute("data-champ-cat");
+        if (cat) setCategory(cat);
+        if (champCat) setChampCategory(champCat);
+        if (window.innerWidth <= 700 && btn.scrollIntoView) {
+          btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+        }
+      });
+    });
+
+    /* ========== MODALS ========== */
+    function openModal(id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      el.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal(el) {
+      if (!el) return;
+      el.classList.remove("open");
+      if (!document.querySelector(".modal-overlay.open")) {
+        document.body.style.overflow = "";
+      }
+    }
+
+    document.querySelectorAll(".regs-card[data-modal]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        openModal(btn.getAttribute("data-modal"));
+      });
+    });
+
+    document.querySelectorAll("[data-close-modal]").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        closeModal(btn.closest(".modal-overlay"));
+      });
+    });
+
+    document.querySelectorAll(".modal-overlay").forEach(function (overlay) {
+      overlay.addEventListener("click", function (e) {
+        if (e.target === overlay) closeModal(overlay);
+      });
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape") {
+        document.querySelectorAll(".modal-overlay.open").forEach(closeModal);
+      }
+    });
+
+    /* ========== INIT ========== */
+    updateVnClock();
+    setInterval(updateVnClock, 1000);
+
+    (async function boot() {
+      _bootForcing = true;
+      var results = await Promise.all([loadPlayersFromBot(), loadChampFromBot()]);
+      setCategory(currentCat);
+      setChampCategory(currentChampCat);
+      // Luôn dò lại API + thông tin player từ đầu mỗi khi load lại trang (không dùng cache cũ).
+      await autoResolvePlayers(true);
+      if (currentCat === "pvp") {
+        await enforcePremiumForPvp(true);
+      }
+      _bootForcing = false;
+    })();
+  </script>
+</body>
+</html>
