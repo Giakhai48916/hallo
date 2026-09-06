@@ -579,110 +579,63 @@
       box-shadow: 0 0 10px rgba(205,127,50,0.4);
     }
 
-    /* —— Cây bracket lồng nhau: mỗi node = (con trái + con phải) → fork → match —— */
+    /* —— Bracket cột + SVG connectors (căn đúng tâm) —— */
     .bracket-row {
+      position: relative;
       display: flex;
-      flex-direction: column;
+      align-items: stretch;
       gap: 0;
+      min-height: 120px;
     }
 
-    /* Tiêu đề các vòng — hàng riêng phía trên */
-    .bk-headers {
+    .bk-round {
       display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      padding-left: 0;
-    }
-    .bk-headers span {
+      flex-direction: column;
       flex: 0 0 auto;
-      width: 140px;
+      width: 148px;
+      position: relative;
+      z-index: 1;
+    }
+    .bk-round-title {
       text-align: center;
       font-size: 10px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.07em;
       color: var(--text-dim);
+      height: 18px;
+      line-height: 18px;
+      margin-bottom: 8px;
+      flex-shrink: 0;
     }
-    .bk-headers .bk-h-gap { width: 28px; flex: 0 0 auto; }
-
-    /* Node: flex ngang — children | fork | match */
-    .bk-node {
-      display: flex;
-      align-items: center;
-      flex: 1 1 auto;
-    }
-    .bk-node-children {
+    .bk-round-body {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      flex: 0 0 auto;
-      gap: 12px;
-    }
-    .bk-node-children > .bk-node,
-    .bk-node-children > .bk-leaf {
       flex: 1 1 auto;
+      gap: 10px;
     }
 
-    /* Lá = chỉ 1 match (round 1) */
-    .bk-leaf {
-      display: flex;
-      align-items: center;
-    }
-
-    /* Fork chữ C — luôn stretch theo chiều cao 2 nhánh con */
-    .bk-fork {
-      width: 28px;
+    .bk-gap {
+      width: 40px;
       flex-shrink: 0;
-      align-self: stretch;
       position: relative;
-      /* nửa chiều cao 1 match (~72px) → mép C chạm đúng giữa 2 slot */
-      margin: 34px 0;
+      z-index: 0;
     }
-    .bk-fork::before {
-      content: "";
+
+    /* SVG connector layer */
+    .bk-svg {
       position: absolute;
-      left: 0;
-      right: 11px;
-      top: 0;
-      bottom: 0;
-      border-top: 2px solid rgba(100,136,235,0.5);
-      border-bottom: 2px solid rgba(100,136,235,0.5);
-      border-right: 2px solid rgba(100,136,235,0.5);
-      border-radius: 0 8px 8px 0;
-    }
-    .bk-fork::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: calc(100% - 13px);
-      width: 13px;
-      border-top: 2px solid rgba(100,136,235,0.55);
-      transform: translateY(-50%);
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: visible;
     }
 
-    /* Nối thẳng 1→1 */
-    .bk-line {
-      width: 28px;
-      flex-shrink: 0;
-      height: 2px;
-      background: rgba(100,136,235,0.5);
-      border-radius: 1px;
-    }
-
-    .bracket-section.lower .bk-fork::before,
-    .bracket-section.lower .bk-fork::after {
-      border-color: rgba(205,127,50,0.55);
-    }
-    .bracket-section.lower .bk-line {
-      background: rgba(205,127,50,0.55);
-    }
-
-    /* Stack các nhánh lớn (upper: 2 nhánh SF; lower tương tự) */
-    .bk-stack {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      gap: 16px;
+    .match[data-bk] {
+      position: relative;
     }
 
     .match {
@@ -695,7 +648,7 @@
       flex-shrink: 0;
       box-shadow: 0 2px 10px rgba(0,0,0,0.18);
       transition: border-color 0.2s, box-shadow 0.2s;
-    }
+      }
     .match:hover {
       border-color: var(--border-light);
       box-shadow: 0 4px 18px rgba(0,0,0,0.28);
@@ -1215,15 +1168,12 @@
         padding: 12px 10px 14px;
         border-radius: 12px;
       }
-      .bk-headers span { width: 124px; }
-      .bk-headers .bk-h-gap { width: 22px; }
+      .bk-round { width: 132px; }
+      .bk-gap { width: 28px; }
       .match { width: 124px; border-radius: 8px; }
       .match-slot { padding: 7px 7px; min-height: 34px; gap: 5px; }
       .match-slot img { width: 20px; height: 20px; }
       .match-slot .slot-name { font-size: 11px; }
-      .bk-fork { width: 22px; margin: 32px 0; }
-      .bk-line { width: 22px; }
-      .bk-node-children { gap: 10px; }
       .champion-player { padding: 14px 20px; }
       .champion-player img { width: 48px; height: 48px; }
       .modal { max-height: min(88vh, 720px); border-radius: 14px 14px 0 0; }
@@ -2743,102 +2693,187 @@
         '<span class="slot-score">' + (score != null ? score : "—") + '</span></div>';
     }
 
-    function matchHTMLFromObj(m) {
+    function matchHTMLFromObj(m, bkId) {
       m = m || emptyMatch();
       var p1 = m.p1, s1 = m.s1, p2 = m.p2, s2 = m.s2;
       var w1 = s1 != null && s2 != null && s1 > s2;
       var w2 = s1 != null && s2 != null && s2 > s1;
-      return '<div class="match">' +
+      var idAttr = bkId ? ' data-bk="' + bkId + '"' : "";
+      return '<div class="match"' + idAttr + '>' +
         slotHTML(p1, s1, w1, !p1) +
         slotHTML(p2, s2, w2, !p2) +
         '</div>';
     }
 
-    /* Lá = 1 match round 1 */
-    function bkLeaf(m) {
-      return '<div class="bk-leaf">' + matchHTMLFromObj(m) + '</div>';
-    }
-
-    /* Node 2→1: children + fork + match */
-    function bkForkNode(childHtml, matchObj) {
-      return '<div class="bk-node">' +
-        '<div class="bk-node-children">' + childHtml + '</div>' +
-        '<div class="bk-fork" aria-hidden="true"></div>' +
-        matchHTMLFromObj(matchObj) +
+    function roundColHTML(title, matches, prefix) {
+      var body = "";
+      for (var i = 0; i < matches.length; i++) {
+        body += matchHTMLFromObj(matches[i], prefix + "-" + i);
+      }
+      return '<div class="bk-round">' +
+        '<div class="bk-round-title">' + title + '</div>' +
+        '<div class="bk-round-body">' + body + '</div>' +
       '</div>';
     }
 
-    /* Node 1→1: child + line + match */
-    function bkLineNode(childHtml, matchObj) {
-      return '<div class="bk-node">' +
-        childHtml +
-        '<div class="bk-line" aria-hidden="true"></div>' +
-        matchHTMLFromObj(matchObj) +
-      '</div>';
+    function gapHTML() {
+      return '<div class="bk-gap" aria-hidden="true"></div>';
     }
 
-    function headersHTML(titles) {
-      var h = '<div class="bk-headers">';
-      for (var i = 0; i < titles.length; i++) {
-        if (i > 0) h += '<div class="bk-h-gap"></div>';
-        h += '<span>' + titles[i] + '</span>';
-      }
-      return h + '</div>';
+    /** Lấy tâm (x,y) của match relative to container */
+    function matchCenter(container, bkId) {
+      var el = container.querySelector('[data-bk="' + bkId + '"]');
+      if (!el) return null;
+      var cr = container.getBoundingClientRect();
+      var er = el.getBoundingClientRect();
+      return {
+        x: er.left - cr.left + er.width / 2,
+        y: er.top - cr.top + er.height / 2,
+        left: er.left - cr.left,
+        right: er.right - cr.left,
+        top: er.top - cr.top,
+        bottom: er.bottom - cr.top,
+        w: er.width,
+        h: er.height
+      };
     }
 
-    function renderUpperTree() {
-      var r1 = CHAMP.upperR1;
-      var r2 = CHAMP.upperR2;
-      var sf = CHAMP.upperSF;
-      var uf = CHAMP.upperFinal;
-      var gf = CHAMP.grandFinal;
-
-      // 4 nhánh R1→R2
-      var r2nodes = [];
-      for (var i = 0; i < 4; i++) {
-        r2nodes.push(bkForkNode(
-          bkLeaf(r1[i * 2]) + bkLeaf(r1[i * 2 + 1]),
-          r2[i]
-        ));
-      }
-      // 2 nhánh R2→SF
-      var sf0 = bkForkNode(r2nodes[0] + r2nodes[1], sf[0]);
-      var sf1 = bkForkNode(r2nodes[2] + r2nodes[3], sf[1]);
-      // SF → Upper Final
-      var ufNode = bkForkNode(sf0 + sf1, uf[0]);
-      // Upper Final → Grand Final (1→1)
-      var gfNode = bkLineNode(ufNode, gf[0]);
-
-      return headersHTML(["Round 1", "Round 2", "Semifinal", "Upper Final", "Grand Final"]) +
-        '<div class="bk-stack">' + gfNode + '</div>';
+    /**
+     * Vẽ chữ C từ 2 match nguồn → 1 match đích.
+     * path: từ mép phải center srcA & srcB → dọc → ngang vào mép trái center dst
+     */
+    function forkPath(a, b, dst) {
+      if (!a || !b || !dst) return "";
+      var x1 = a.right;
+      var y1 = a.y;
+      var x2 = b.right;
+      var y2 = b.y;
+      var midX = (Math.max(x1, x2) + dst.left) / 2;
+      var yD = dst.y;
+      var xD = dst.left;
+      // horizontal from A, vertical to B's y via mid, horizontal to dst
+      return "M " + x1 + " " + y1 +
+        " H " + midX +
+        " M " + x2 + " " + y2 +
+        " H " + midX +
+        " M " + midX + " " + y1 +
+        " V " + y2 +
+        " M " + midX + " " + yD +
+        " H " + xD;
     }
 
-    function renderLowerTree() {
-      var l1 = CHAMP.lowerR1;
-      var l2 = CHAMP.lowerR2;
-      var l3 = CHAMP.lowerR3;
-      var l4 = CHAMP.lowerR4;
-      var l5 = CHAMP.lowerR5;
-      var lf = CHAMP.lowerFinal;
+    function linePath(a, dst) {
+      if (!a || !dst) return "";
+      return "M " + a.right + " " + a.y + " H " + dst.left;
+    }
 
-      // L1 (4) → L2 (4) nối thẳng từng cặp
-      var l2nodes = [];
-      for (var i = 0; i < 4; i++) {
-        l2nodes.push(bkLineNode(bkLeaf(l1[i]), l2[i]));
+    function drawConnectors(rowEl, links, color) {
+      if (!rowEl) return;
+      var old = rowEl.querySelector("svg.bk-svg");
+      if (old) old.remove();
+
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("class", "bk-svg");
+      svg.setAttribute("width", "100%");
+      svg.setAttribute("height", "100%");
+
+      var paths = "";
+      for (var i = 0; i < links.length; i++) {
+        var L = links[i];
+        var d = "";
+        if (L.type === "fork") {
+          d = forkPath(
+            matchCenter(rowEl, L.a),
+            matchCenter(rowEl, L.b),
+            matchCenter(rowEl, L.dst)
+          );
+        } else {
+          d = linePath(matchCenter(rowEl, L.a), matchCenter(rowEl, L.dst));
+        }
+        if (d) {
+          paths += '<path d="' + d + '" fill="none" stroke="' + color +
+            '" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>';
+        }
       }
-      // L2 (4) → L3 (2) fork
-      var l3_0 = bkForkNode(l2nodes[0] + l2nodes[1], l3[0]);
-      var l3_1 = bkForkNode(l2nodes[2] + l2nodes[3], l3[1]);
-      // L3 (2) → L4 (2) nối thẳng
-      var l4_0 = bkLineNode(l3_0, l4[0]);
-      var l4_1 = bkLineNode(l3_1, l4[1]);
-      // L4 (2) → L5 (1) fork
-      var l5node = bkForkNode(l4_0 + l4_1, l5[0]);
-      // L5 → Lower Final (1→1)
-      var lfNode = bkLineNode(l5node, lf[0]);
+      svg.innerHTML = paths;
+      rowEl.insertBefore(svg, rowEl.firstChild);
+    }
 
-      return headersHTML(["Round 1", "Round 2", "Round 3", "Round 4", "Round 5", "Lower Final"]) +
-        '<div class="bk-stack">' + lfNode + '</div>';
+    function renderUpperRow() {
+      return roundColHTML("Round 1", CHAMP.upperR1, "u-r1") + gapHTML() +
+        roundColHTML("Round 2", CHAMP.upperR2, "u-r2") + gapHTML() +
+        roundColHTML("Semifinal", CHAMP.upperSF, "u-sf") + gapHTML() +
+        roundColHTML("Upper Final", CHAMP.upperFinal, "u-uf") + gapHTML() +
+        roundColHTML("Grand Final", CHAMP.grandFinal, "u-gf");
+    }
+
+    function renderLowerRow() {
+      return roundColHTML("Round 1", CHAMP.lowerR1, "l-r1") + gapHTML() +
+        roundColHTML("Round 2", CHAMP.lowerR2, "l-r2") + gapHTML() +
+        roundColHTML("Round 3", CHAMP.lowerR3, "l-r3") + gapHTML() +
+        roundColHTML("Round 4", CHAMP.lowerR4, "l-r4") + gapHTML() +
+        roundColHTML("Round 5", CHAMP.lowerR5, "l-r5") + gapHTML() +
+        roundColHTML("Lower Final", CHAMP.lowerFinal, "l-lf");
+    }
+
+    function wireUpperConnectors(rowEl) {
+      var links = [
+        { type: "fork", a: "u-r1-0", b: "u-r1-1", dst: "u-r2-0" },
+        { type: "fork", a: "u-r1-2", b: "u-r1-3", dst: "u-r2-1" },
+        { type: "fork", a: "u-r1-4", b: "u-r1-5", dst: "u-r2-2" },
+        { type: "fork", a: "u-r1-6", b: "u-r1-7", dst: "u-r2-3" },
+        { type: "fork", a: "u-r2-0", b: "u-r2-1", dst: "u-sf-0" },
+        { type: "fork", a: "u-r2-2", b: "u-r2-3", dst: "u-sf-1" },
+        { type: "fork", a: "u-sf-0", b: "u-sf-1", dst: "u-uf-0" },
+        { type: "line", a: "u-uf-0", dst: "u-gf-0" }
+      ];
+      drawConnectors(rowEl, links, "rgba(100,136,235,0.55)");
+    }
+
+    function wireLowerConnectors(rowEl) {
+      var links = [
+        { type: "line", a: "l-r1-0", dst: "l-r2-0" },
+        { type: "line", a: "l-r1-1", dst: "l-r2-1" },
+        { type: "line", a: "l-r1-2", dst: "l-r2-2" },
+        { type: "line", a: "l-r1-3", dst: "l-r2-3" },
+        { type: "fork", a: "l-r2-0", b: "l-r2-1", dst: "l-r3-0" },
+        { type: "fork", a: "l-r2-2", b: "l-r2-3", dst: "l-r3-1" },
+        { type: "line", a: "l-r3-0", dst: "l-r4-0" },
+        { type: "line", a: "l-r3-1", dst: "l-r4-1" },
+        { type: "fork", a: "l-r4-0", b: "l-r4-1", dst: "l-r5-0" },
+        { type: "line", a: "l-r5-0", dst: "l-lf-0" }
+      ];
+      drawConnectors(rowEl, links, "rgba(205,127,50,0.6)");
+    }
+
+    var _bkDrawTimer = null;
+    function scheduleDrawConnectors() {
+      if (_bkDrawTimer) {
+        cancelAnimationFrame(_bkDrawTimer);
+        clearTimeout(_bkDrawTimer);
+      }
+      function draw() {
+        var upperRow = document.getElementById("bkUpperRow");
+        var lowerRow = document.getElementById("bkLowerRow");
+        // Bỏ qua nếu panel đang ẩn (kích thước = 0)
+        if (upperRow) {
+          var r = upperRow.getBoundingClientRect();
+          if (r.width < 8 || r.height < 8) return;
+          wireUpperConnectors(upperRow);
+        }
+        if (lowerRow) {
+          var r2 = lowerRow.getBoundingClientRect();
+          if (r2.width >= 8 && r2.height >= 8) wireLowerConnectors(lowerRow);
+        }
+      }
+      _bkDrawTimer = requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          draw();
+          // Thêm 1 lần sau layout/font ổn định
+          setTimeout(draw, 50);
+          setTimeout(draw, 200);
+        });
+      });
     }
 
     function renderBracket() {
@@ -2849,13 +2884,13 @@
       var upper =
         '<div class="bracket-section upper">' +
           '<div class="bracket-section-label">Upper Bracket</div>' +
-          '<div class="bracket-row">' + renderUpperTree() + '</div>' +
+          '<div class="bracket-row" id="bkUpperRow">' + renderUpperRow() + '</div>' +
         '</div>';
 
       var lower =
         '<div class="bracket-section lower">' +
           '<div class="bracket-section-label">Lower Bracket</div>' +
-          '<div class="bracket-row">' + renderLowerTree() + '</div>' +
+          '<div class="bracket-row" id="bkLowerRow">' + renderLowerRow() + '</div>' +
         '</div>';
 
       var champBlock = "";
@@ -2876,7 +2911,14 @@
       var catLabel = CHAMP_CAT_LABELS[currentChampCat] || currentChampCat;
       el.innerHTML = upper + lower + champBlock +
         '<p class="champ-empty-note">Bot: /chamopen · /chamadd (nhánh ' + catLabel + ', tối đa 16 player) · random cặp Round 1</p>';
+
+      scheduleDrawConnectors();
     }
+
+    // Vẽ lại connector khi resize
+    window.addEventListener("resize", function () {
+      scheduleDrawConnectors();
+    });
 
     function setChampCategory(cat) {
       if (CHAMP_CATS.indexOf(cat) < 0) cat = "pvp";
@@ -2952,6 +2994,10 @@
         document.querySelectorAll(".panel").forEach(function (p) { p.classList.remove("active"); });
         btn.classList.add("active");
         document.getElementById(btn.dataset.tab).classList.add("active");
+        // Panel vừa hiện (display:none → block) → đo lại tọa độ để vẽ connector
+        if (btn.dataset.tab === "championship") {
+          scheduleDrawConnectors();
+        }
       });
     });
 
